@@ -13,6 +13,10 @@ Here are some ideas to get you started:
 - ⚡ Fun fact: ...
 -->
 
+<p align="center">
+  <img src="chris-greening.png" width="600px">
+</p>
+
 Hello! My name is Chris Greening and I am a Python developer based out of the New York metro area. 
 
 [![LinkedIn](https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/chris-greening-646411139/) 
