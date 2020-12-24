@@ -14,7 +14,7 @@ Here are some ideas to get you started:
 -->
 
 <p align="center">
-  <img src="chris-greening.png" width="600px">
+  <img src="chris-greening-dev.png" width="600px">
 </p>
 
 Hello! My name is Chris Greening and I am a Python developer based out of the New York metro area. 
