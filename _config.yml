@@ -28,7 +28,7 @@ twitter_username: ChrisGreening
 github_username:  chris-greening
 
 # Build settings
-theme: minima
+theme: minimal-mistakes-jekyll
 plugins:
   - jekyll-feed
 
