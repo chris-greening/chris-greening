@@ -29,11 +29,26 @@ github_username:  chris-greening
 
 # Build settings
 theme: minimal-mistakes-jekyll
+markdown: kramdown
+highlighter: rouge
 plugins:
   - jekyll-feed
+  - jekyll-include-cache
+  - jekyll-sitemap
 
 include: ["_pages"]
 
+footer:
+  links:
+    - label: "Twitter"
+      icon: "fab fa-fw fa-twitter-square"
+      url: "https://twitter.com/ChrisGreening"
+    - label: "GitHub"
+      icon: "fab fa-fw fa-github"
+      url: "https://github.com/chris-greening"
+    - label: "LinkedIn"
+      icon: "fab fa-fw fa-linkedin"
+      url: "https://www.linkedin.com/in/chris-greening-646411139/"
 
 # Exclude from processing.
 # The following items will not be processed, by default.
