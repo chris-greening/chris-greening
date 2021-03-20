@@ -29,6 +29,7 @@ github_username:  chris-greening
 
 # Build settings
 theme: minimal-mistakes-jekyll
+remote_theme: "mmistakes/minimal-mistakes@4.21.0"
 markdown: kramdown
 highlighter: rouge
 plugins:
