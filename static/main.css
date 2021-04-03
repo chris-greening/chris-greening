@@ -7,8 +7,21 @@ body, html {
   overflow: hidden;
 }
 
+.masthead {
+  display: none;
+}
+
 .container {
   width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
 }
 
 .container .box {
@@ -33,6 +46,7 @@ body, html {
       -ms-flex-align: center;
           align-items: center;
   height: 64px;
+  margin-top: 100px;
 }
 
 .container .box .title .block {
