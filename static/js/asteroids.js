@@ -14,21 +14,21 @@ function initialize() {
 }
 
 function onKeyUp(event) {
+    // if (event.key == 'space') {
+    //     Ship.moveTo(Point.random() * view.size);
+    //     Ship.stop();
+    // }
     if (event.key == 'space') {
-        Ship.moveTo(Point.random() * view.size);
-        Ship.stop();
-    }
-    if (event.key == 'z') {
         Ship.fire();
     }
     // Show stats:
-    if (event.key == 'f') {
-        var stats = document.getElementById('stats');
-        if (stats) {
-            stats.style.display = (stats.style.display == 'block')
-                ? 'none' : 'block';
-        }
-    }
+    // if (event.key == 'f') {
+    //     var stats = document.getElementById('stats');
+    //     if (stats) {
+    //         stats.style.display = (stats.style.display == 'block')
+    //             ? 'none' : 'block';
+    //     }
+    // }
 }
 
 function onFrame() {
@@ -48,6 +48,7 @@ function onFrame() {
     }
     Ship.move();
 }
+
 
 project.currentStyle.strokeColor = 'white';
 
@@ -234,14 +235,14 @@ var Bullets = new function () {
             });
             var bullet = new Path.Circle({
                 center: position + vector,
-                radius: 1.0,
+                radius: 2.0,
                 parent: group,
                 fillColor: 'white',
                 strokeWidth: 'white',
                 strokeWidth: 0,
                 data: {
                     vector: vector,
-                    timeToDie: 58
+                    timeToDie: 100
                 }
             });
         },
