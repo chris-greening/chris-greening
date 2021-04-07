@@ -2,9 +2,7 @@ var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
     rockCount: 6,
-    lives: 3,
-    freeShipScore: 10000,
-    freeShipIncrement: 10000
+    integerOverflow: 65535
 };
 
 function initialize() {
@@ -380,7 +378,7 @@ var Score = new function () {
             if (type == Rocks.TYPE_BIG) score += 400;
             if (type == Rocks.TYPE_MEDIUM) score += 1000;
             if (type == Rocks.TYPE_SMALL) score += 2000;
-            if (score >= 65535) {
+            if (score >= presets.integerOverflow) {
                 score = 0;
                 Ship.integerOverflow = true;
             }
