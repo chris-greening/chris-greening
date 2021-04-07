@@ -83,8 +83,9 @@ var assets = {
 };
 
 var Ship = new function () {
-    var path = new Path([-10, -8], [10, 0], [-10, 8], [-8, 4], [-8, -4]);
+    var path = new Path([-10, -8], [10, 0], [-10, 8]);
     path.closed = true;
+    var integerOverflow = false;
     var thrust = new Path([-8, -4], [-14, 0], [-8, 4]);
     var group = new Group(path, thrust);
     group.position = view.bounds.center;
@@ -196,8 +197,10 @@ var Ship = new function () {
                 tempRock.transform(crashRock.matrix);
                 tempRock.remove();
                 var intersections = this.item.firstChild.getIntersections(tempRock);
-                if (intersections.length > 0)
-                    Lives.remove();
+                if (intersections.length > 0) {
+                    Ship.destroy();
+                    setTimeout(function () { Ship.destroyed(); }, 1200);
+                }
             }
         }
     };
@@ -242,7 +245,7 @@ var Bullets = new function () {
                 strokeWidth: 0,
                 data: {
                     vector: vector,
-                    timeToDie: 100
+                    timeToDie: 60
                 }
             });
         },
@@ -374,12 +377,12 @@ var Score = new function () {
     var score = 0;
     return {
         update: function (type) {
-            if (type == Rocks.TYPE_BIG) score += 20;
-            if (type == Rocks.TYPE_MEDIUM) score += 50;
-            if (type == Rocks.TYPE_SMALL) score += 100;
-            if (score >= presets.freeShipScore) {
-                Lives.add(1);
-                presets.freeShipScore += presets.freeShipIncrement;
+            if (type == Rocks.TYPE_BIG) score += 400;
+            if (type == Rocks.TYPE_MEDIUM) score += 1000;
+            if (type == Rocks.TYPE_SMALL) score += 2000;
+            if (score >= 65535) {
+                score = 0;
+                Ship.integerOverflow = true;
             }
             scoreDisplay.removeChildren();
 
@@ -393,46 +396,46 @@ var Score = new function () {
     };
 };
 
-var Lives = new function () {
-    var currentLives;
-    var shipPath = Ship.item.firstChild.clone();
-    project.activeLayer.addChild(shipPath);
-    shipPath.visible = false;
-    Ship.visible = false;
-    var group = new Group();
-    return {
-        initialize: function () {
-            currentLives = presets.lives;
-            this.display();
-        },
-        add: function () {
-            currentLives++;
-            this.display();
-        },
-        remove: function () {
-            currentLives--;
-            this.display();
-            Ship.destroy();
-            setTimeout(function () {
-                if (currentLives == 0) {
-                    Game.over();
-                } else {
-                    Ship.destroyed();
-                }
-            }, 1200);
-        },
-        display: function () {
-            group.removeChildren();
-            for (var i = 0; i < currentLives - 1; i++) {
-                var copy = shipPath.clone();
-                copy.rotate(-90);
-                copy.visible = true;
-                group.addChild(copy);
-                copy.position = [22 + i * copy.bounds.width, 53];
-            }
-        }
-    };
-};
+// var Lives = new function () {
+//     var currentLives;
+//     var shipPath = Ship.item.firstChild.clone();
+//     project.activeLayer.addChild(shipPath);
+//     shipPath.visible = false;
+//     Ship.visible = false;
+//     var group = new Group();
+//     return {
+//         initialize: function () {
+//             currentLives = presets.lives;
+//             this.display();
+//         },
+//         add: function () {
+//             currentLives++;
+//             this.display();
+//         },
+//         remove: function () {
+//             currentLives--;
+//             this.display();
+//             Ship.destroy();
+//             setTimeout(function () {
+//                 if (currentLives == 0) {
+//                     Game.over();
+//                 } else {
+//                     Ship.destroyed();
+//                 }
+//             }, 1200);
+//         },
+//         display: function () {
+//             group.removeChildren();
+//             for (var i = 0; i < currentLives - 1; i++) {
+//                 var copy = shipPath.clone();
+//                 copy.rotate(-90);
+//                 copy.visible = true;
+//                 group.addChild(copy);
+//                 copy.position = [22 + i * copy.bounds.width, 53];
+//             }
+//         }
+//     };
+// };
 
 initialize();
 

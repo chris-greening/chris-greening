@@ -61,6 +61,7 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  padding-top: 3%;
 }
 
 .container .box {
@@ -117,6 +118,7 @@ section {
       -ms-flex-align: baseline;
           align-items: baseline;
   position: relative;
+  z-index: -1;
 }
 
 .container .box .role {
@@ -159,6 +161,7 @@ section {
   font-size: 32px;
   text-transform: uppercase;
   letter-spacing: 5px;
+  z-index: -1;
 }
 
 @-webkit-keyframes mainBlock {
