@@ -2,7 +2,9 @@ var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
     rockCount: 6,
-    integerOverflow: 65535
+    lives: 3,
+    freeShipScore: 10000,
+    freeShipIncrement: 10000
 };
 
 function initialize() {
@@ -45,6 +47,18 @@ function onFrame() {
         Ship.coast();
     }
     Ship.move();
+
+    // vector = vector + (mouseVector - vector) / 30;
+
+    // Run through the active layer's children list and change
+    // the position of the placed symbols:
+    // for (var i = 0; i < count; i++) {
+    //     var item = project.activeLayer.children[i];
+    //     var size = item.bounds.size;
+    //     var length = vector.length / 10 * size.width / 10;
+    //     // item.position += vector.normalize(length) + item.data.vector;
+    //     keepInView(item);
+    // }
 }
 
 
@@ -82,6 +96,7 @@ var assets = {
 
 var Ship = new function () {
     var path = new Path([-10, -8], [10, 0], [-10, 8]);
+    path.fillColor = "black";
     path.closed = true;
     var integerOverflow = false;
     var thrust = new Path([-8, -4], [-14, 0], [-8, 4]);
@@ -283,6 +298,10 @@ var Rocks = new function () {
             [33.5, 0.5], [46.5, 19.5], [13.5, 40.5], [-22.5, 39.5], [-46.5, 18.5],
             [-46.5, -18.5], [-22.5, -40.5])
     ];
+    for (var i = 0; i < 4; i++) {
+        shapes[i].fillColor = "black";
+        shapes[i].strokeWidth = 2;
+    }
 
     // medium rocks
     for (var i = 4; i < 8; i++) {
@@ -315,6 +334,7 @@ var Rocks = new function () {
                 length: presets.maxRockSpeed * Math.random() + 0.1
             });
             rock.shapeType = type;
+            rock.fillColor = "black";
             return rock;
         },
         add: function (amount, type, position) {
@@ -378,7 +398,7 @@ var Score = new function () {
             if (type == Rocks.TYPE_BIG) score += 400;
             if (type == Rocks.TYPE_MEDIUM) score += 1000;
             if (type == Rocks.TYPE_SMALL) score += 2000;
-            if (score >= presets.integerOverflow) {
+            if (score >= 65535) {
                 score = 0;
                 Ship.integerOverflow = true;
             }
@@ -393,47 +413,6 @@ var Score = new function () {
         }
     };
 };
-
-// var Lives = new function () {
-//     var currentLives;
-//     var shipPath = Ship.item.firstChild.clone();
-//     project.activeLayer.addChild(shipPath);
-//     shipPath.visible = false;
-//     Ship.visible = false;
-//     var group = new Group();
-//     return {
-//         initialize: function () {
-//             currentLives = presets.lives;
-//             this.display();
-//         },
-//         add: function () {
-//             currentLives++;
-//             this.display();
-//         },
-//         remove: function () {
-//             currentLives--;
-//             this.display();
-//             Ship.destroy();
-//             setTimeout(function () {
-//                 if (currentLives == 0) {
-//                     Game.over();
-//                 } else {
-//                     Ship.destroyed();
-//                 }
-//             }, 1200);
-//         },
-//         display: function () {
-//             group.removeChildren();
-//             for (var i = 0; i < currentLives - 1; i++) {
-//                 var copy = shipPath.clone();
-//                 copy.rotate(-90);
-//                 copy.visible = true;
-//                 group.addChild(copy);
-//                 copy.position = [22 + i * copy.bounds.width, 53];
-//             }
-//         }
-//     };
-// };
 
 initialize();
 
@@ -465,3 +444,55 @@ function keepInView(item) {
         position.y = bounds.height + itemBounds.height / 2;
     }
 }
+
+var count = 150;
+
+// Create a symbol, which we will use to place instances of later:
+var Star = new Path.Circle({
+    center: new Point(0, 0),
+    radius: 3,
+    fillColor: 'white',
+    strokeColor: 'black'
+});
+
+var symbol = new SymbolDefinition(Star);
+
+// Place the instances of the symbol:
+for (var i = 0; i < count; i++) {
+    // The center position is a random point in the view:
+    var center = Point.random() * view.size;
+    var placed = symbol.place(center);
+    var scale = (i + 1) / count;
+    placed.scale(scale);
+    placed.data.vector = new Point({
+        angle: Math.random() * 360,
+        length: scale * Math.random() / 5
+    });
+    placed.sendToBack();
+}
+
+var vector = new Point({
+    angle: 45,
+    length: 0
+});
+
+// var mouseVector = vector.clone();
+
+// function onMouseMove(event) {
+//     mouseVector = view.center - event.point;
+// }
+
+// The onFrame function is called up to 60 times a second:
+// function onFrame(event) {
+//     vector = vector + (mouseVector - vector) / 30;
+
+//     // Run through the active layer's children list and change
+//     // the position of the placed symbols:
+//     for (var i = 0; i < count; i++) {
+//         var item = project.activeLayer.children[i];
+//         var size = item.bounds.size;
+//         var length = vector.length / 10 * size.width / 10;
+//         item.position += vector.normalize(length) + item.data.vector;
+//         keepInView(item);
+//     }
+// }
