@@ -5,7 +5,9 @@ var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
     rockCount: Math.round((vw/200) + (vh/300)),
-    gameStart: false
+    gameStart: false,
+    nightMode: true,
+    soundEnabled: false
 };
 
 function initialize() {
@@ -80,7 +82,7 @@ var assets = {
     },
     explosion: new function () {
         var explosionPath = new Path.Circle(new Point(), 1);
-        if (nightMode) {
+        if (presets.nightMode) {
             explosionPathColor = "white";
         } else {
             explosionPathColor = "black";
@@ -178,7 +180,9 @@ var Ship = new function () {
             // var v = getStartPosition();
             this.item.position = new Point(v.x, v.y);
             this.dying = true;
-            assets.soundEffects["deathExplosion"].cloneNode().play();
+            if (presets.soundEnabled) {
+                assets.soundEffects["deathExplosion"].cloneNode().play();
+            }
         },
 
         destroyed: function () {
@@ -278,12 +282,14 @@ var Bullets = new function () {
             if (children.length == 5)
                 return;
             // assets.soundEffects['lazer'].play();
-            assets.soundEffects["lazer"].cloneNode().play();
+            if (presets.soundEnabled) {
+                assets.soundEffects["lazer"].cloneNode().play();
+            }
             var vector = new Point({
                 angle: angle,
                 length: 10
             });
-            if (nightMode) {
+            if (presets.nightMode) {
                 var bulletColor = "white";
                 var bulletWidth = "white";
             } else {
@@ -450,7 +456,7 @@ var Score = new function () {
                 var n = parseInt(scoreString[i], 10);
                 scoreDisplay.addChild(numberGroup.children[n].clone());
                 scoreDisplay.lastChild.position = [22 + i * 24, 22];
-                // if (nightMode) {
+                // if (presets.nightMode) {
                 //     scoreDisplay.strokeColor = "white";
                 // } else {
                 //     scoreDisplay.strokeColor = "black";
@@ -459,7 +465,7 @@ var Score = new function () {
         },
 
         // updateColor: function () {
-        //     if (nightMode) {
+        //     if (presets.nightMode) {
         //         scoreDisplay.strokeColor = "white";
         //     } else {
         //         scoreDisplay.strokeColor = "black";
@@ -540,7 +546,7 @@ var vector = new Point({
 });
 
 var nightModeButton = document.getElementById('nightmode');
-var nightMode = true;
+var soundEffectsButton = document.getElementById('sound-effects');
 
 nightModeButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
@@ -549,7 +555,7 @@ nightModeButton.onclick = function () {
     var p = document.getElementsByTagName("p");
     var button = document.getElementsByTagName("i")[0];
     // var span = document.getElementsByTagName("span")[0];
-    if (nightMode) {
+    if (presets.nightMode) {
         body.classList.remove("darkmode");
         body.classList.add("lightmode");
         h1.style.color = "black";
@@ -569,26 +575,16 @@ nightModeButton.onclick = function () {
         }
         Ship.item.strokeColor = "white";
     }
-    nightMode = !nightMode
+    presets.nightMode = !presets.nightMode
 }
 
-// var mouseVector = vector.clone();
-
-// function onMouseMove(event) {
-//     mouseVector = view.center - event.point;
-// }
-
-// The onFrame function is called up to 60 times a second:
-// function onFrame(event) {
-//     vector = vector + (mouseVector - vector) / 30;
-
-//     // Run through the active layer's children list and change
-//     // the position of the placed symbols:
-//     for (var i = 0; i < count; i++) {
-//         var item = project.activeLayer.children[i];
-//         var size = item.bounds.size;
-//         var length = vector.length / 10 * size.width / 10;
-//         item.position += vector.normalize(length) + item.data.vector;
-//         keepInView(item);
-//     }
-// }
+soundEffectsButton.onclick = function () {
+    if (presets.soundEnabled) {
+        soundEffectsButton.classList.remove("fa-volume-up");
+        soundEffectsButton.classList.add("fa-volume-mute");
+    } else {
+        soundEffectsButton.classList.remove("fa-volume-mute");
+        soundEffectsButton.classList.add("fa-volume-up");
+    }
+    presets.soundEnabled = !presets.soundEnabled;
+}
