@@ -68,6 +68,7 @@ var Game = {
 };
 
 var assets = {
+    soundEffects: [],
     destroyedShip: new function () {
         var group = new Group(
             new Path([-10, -8], [10, 0]),
@@ -103,6 +104,11 @@ var Ship = new function () {
     // group.position = view.bounds.center;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
+
+    assets.soundEffects['deathExplosion'] = new Audio("./static/js/explosion.mp3");
+    assets.soundEffects['deathExplosion'].volume = .5;
+    assets.soundEffects['deathExplosion'].load();
+
     return {
         item: group,
 
@@ -172,6 +178,7 @@ var Ship = new function () {
             // var v = getStartPosition();
             this.item.position = new Point(v.x, v.y);
             this.dying = true;
+            assets.soundEffects["deathExplosion"].cloneNode().play();
         },
 
         destroyed: function () {
@@ -226,9 +233,27 @@ var Ship = new function () {
     };
 };
 
+function sound(src) {
+    this.sound = document.createElement("audio");
+    this.sound.src = src;
+    this.sound.setAttribute("preload", "auto");
+    this.sound.setAttribute("controls", "none");
+    this.sound.style.display = "none";
+    document.body.appendChild(this.sound);
+    this.play = function () {
+        this.sound.play();
+    }
+    this.stop = function () {
+        this.sound.pause();
+    }
+}
+
 var Bullets = new function () {
     var group = new Group();
     var children = group.children;
+    assets.soundEffects['lazer'] = new Audio("./static/js/lazer.mp3");
+    assets.soundEffects['lazer'].volume = .5;
+    assets.soundEffects['lazer'].load();
 
     function checkHits(bullet) {
         for (var r = 0; r < Rocks.children.length; r++) {
@@ -252,6 +277,8 @@ var Bullets = new function () {
             // We can only fire 5 bullets at a time:
             if (children.length == 5)
                 return;
+            // assets.soundEffects['lazer'].play();
+            assets.soundEffects["lazer"].cloneNode().play();
             var vector = new Point({
                 angle: angle,
                 length: 10
