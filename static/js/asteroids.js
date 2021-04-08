@@ -11,6 +11,11 @@ var presets = {
 };
 
 function initialize() {
+    // assets.soundEffects['music'] = new Audio("./static/js/song.mp3");
+    // // assets.soundEffects['music'].volume = .5;
+    // assets.soundEffects['music'].load();
+    // // assets.soundEffects['music'].play();
+
     Rocks.add(presets.rockCount);
     setTimeout(function () { Ship.make(); }, 1800);
     Score.update();
@@ -108,7 +113,6 @@ var Ship = new function () {
     group.position = new Point(v.x, v.y);
 
     assets.soundEffects['deathExplosion'] = new Audio("./static/js/explosion.mp3");
-    assets.soundEffects['deathExplosion'].volume = .5;
     assets.soundEffects['deathExplosion'].load();
 
     return {
@@ -256,7 +260,7 @@ var Bullets = new function () {
     var group = new Group();
     var children = group.children;
     assets.soundEffects['lazer'] = new Audio("./static/js/lazer.mp3");
-    assets.soundEffects['lazer'].volume = .5;
+    assets.soundEffects['lazer'].volume = 1;
     assets.soundEffects['lazer'].load();
 
     function checkHits(bullet) {
@@ -547,6 +551,7 @@ var vector = new Point({
 
 var nightModeButton = document.getElementById('nightmode');
 var soundEffectsButton = document.getElementById('sound-effects');
+var backgroundMusic = document.getElementById("background-song");
 
 nightModeButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
@@ -582,9 +587,14 @@ soundEffectsButton.onclick = function () {
     if (presets.soundEnabled) {
         soundEffectsButton.classList.remove("fa-volume-up");
         soundEffectsButton.classList.add("fa-volume-mute");
+        // backgroundMusic.muted = true;
+        backgroundMusic.pause()
     } else {
         soundEffectsButton.classList.remove("fa-volume-mute");
         soundEffectsButton.classList.add("fa-volume-up");
+        // backgroundMusic.muted = false;
+        backgroundMusic.play()
     }
     presets.soundEnabled = !presets.soundEnabled;
 }
+
