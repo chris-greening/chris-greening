@@ -10,7 +10,7 @@ var presets = {
 };
 
 function initialize() {
-    Rocks.add(presets.rockCount);
+    setTimeout(function () { Rocks.add(presets.rockCount); }, 1800);
     Score.update();
     // Lives.initialize();
 }
