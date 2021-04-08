@@ -1,15 +1,12 @@
-// const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
-// const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
 // console.log(vw)
 // console.log(vh)
 
 var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
-    rockCount: 6,
-    lives: 3,
-    freeShipScore: 10000,
-    freeShipIncrement: 10000
+    rockCount: Math.round((vw/200) + (vh/300)),
 };
 
 function initialize() {
