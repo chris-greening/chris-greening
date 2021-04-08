@@ -531,7 +531,6 @@ nightModeButton.onclick = function () {
             p[i].style.color = "black";
         }
         Ship.item.strokeColor = "black";
-        Score.updateColor();
     } else {
         body.classList.add("darkmode");
         body.classList.remove("lightmode");
@@ -542,7 +541,6 @@ nightModeButton.onclick = function () {
             p[i].style.color = "white";
         }
         Ship.item.strokeColor = "white";
-        Score.updateColor();
     }
     nightMode = !nightMode
 }
