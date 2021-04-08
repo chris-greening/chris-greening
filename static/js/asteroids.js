@@ -8,7 +8,8 @@ var presets = {
     gameStart: false,
     nightMode: true,
     soundEnabled: false,
-    pause: false
+    pause: false,
+    crtEffect: false
 };
 
 function initialize() {
@@ -556,6 +557,7 @@ var nightModeButton = document.getElementById('nightmode');
 var soundEffectsButton = document.getElementById('sound-effects');
 var backgroundMusic = document.getElementById("background-song");
 var pauseButton = document.getElementById("pause-button");
+var crtEffectButton = document.getElementById("crt-effect");
 
 nightModeButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
@@ -613,5 +615,16 @@ pauseButton.onclick = function () {
         // backgroundMusic.muted = false;
     }
     presets.pause = !presets.pause;
+}
+
+crtEffectButton.onclick = function () {
+    var body = document.getElementsByTagName("body")[0];
+
+    if (presets.crtEffect) {
+        body.classList.remove("crt");
+    } else {
+        body.classList.add("crt");
+    }
+    presets.crtEffect = !presets.crtEffect;
 }
 
