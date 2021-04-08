@@ -83,10 +83,10 @@ var assets = {
 };
 
 var Ship = new function () {
-    var path = new Path([-8.5, -12], [0, 6], [9, -12]);
+    var path = new Path([-7, -15], [0, 5], [7, -15]);
     path.strokeWidth = 2.5;
     path.strokeColor = "white";
-    path.fillColor = "black";
+    // path.fillColor = "black";
     // path.closed = true;
     var integerOverflow = false;
     var thrust = new Path([-4, -9], [0, -14], [4, -9]);
