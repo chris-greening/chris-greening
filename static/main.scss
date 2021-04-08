@@ -17,7 +17,7 @@ canvas {
 }
 
 body {
-  background: #000;
+  background-color: black;
   font-family:Helvetica,Arial;
 }
 
@@ -57,6 +57,7 @@ section {
   justify-content: center;
   align-items: center;
   padding-top: 3%;
+  color: white;
   .box {
     // width: 250px;
     height: 250px;
@@ -85,7 +86,7 @@ section {
 
       h1 {
         font-family: 'Georgia';
-        color: #FFF;
+        // color: #FFF;
         font-size: 72px;
         -webkit-animation: mainFadeIn 1s forwards;
         -o-animation: mainFadeIn 1s forwards;
@@ -124,7 +125,6 @@ section {
         opacity: 0;
         font-weight: 400;
         font-family: 'Georgia';
-        color: #FFF;
         font-size: 32px;
         text-transform: uppercase;
         letter-spacing: 5px;
@@ -222,4 +222,43 @@ section {
   animation: secFadeIn 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
+}
+
+#nightmode {
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  color: white;
+}
+
+.lightmode {
+  animation: darkToLight 1s ease;
+  animation-fill-mode:forwards;
+}
+
+.darkmode {
+  animation: lightToDark 1s ease;
+  animation-fill-mode:forwards;
+}
+
+@keyframes darkToLight {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes lightToDark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
 }

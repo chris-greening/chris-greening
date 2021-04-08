@@ -44,6 +44,9 @@ function onFrame() {
         if (!presets.gameStart) {
             presets.gameStart = true;
         }
+    if (Key.isDown("n")) {
+
+    }
     } else {
         Ship.coast();
     }
@@ -76,20 +79,25 @@ var assets = {
     },
     explosion: new function () {
         var explosionPath = new Path.Circle(new Point(), 1);
-        explosionPath.fillColor = 'white';
+        if (nightMode) {
+            explosionPathColor = "white";
+        } else {
+            explosionPathColor = "black";
+        }
+        explosionPath.fillColor = explosionPathColor;
         explosionPath.strokeColor = null;
         return new SymbolDefinition(explosionPath);
     }
 };
 
 var Ship = new function () {
-    var path = new Path([-7, -15], [0, 5], [7, -15]);
+    var path = new Path([-7, -15], [0, 2], [7, -15]);
     path.strokeWidth = 2.5;
     path.strokeColor = "white";
     // path.fillColor = "black";
     // path.closed = true;
     var integerOverflow = false;
-    var thrust = new Path([-4, -9], [0, -14], [4, -9]);
+    var thrust = new Path([-4, -9], [0, -18], [4, -9]);
     var group = new Group(path, thrust);
     group.opacity = 0;
     // group.position = view.bounds.center;
@@ -248,12 +256,19 @@ var Bullets = new function () {
                 angle: angle,
                 length: 10
             });
+            if (nightMode) {
+                var bulletColor = "white";
+                var bulletWidth = "white";
+            } else {
+                var bulletColor = "black";
+                var bulletWidth = "black";
+            }
             var bullet = new Path.Circle({
                 center: position + vector,
                 radius: 2.0,
                 parent: group,
-                fillColor: 'white',
-                strokeWidth: 'white',
+                fillColor: bulletColor,
+                strokeWidth: bulletWidth,
                 strokeWidth: 0,
                 data: {
                     vector: vector,
@@ -408,8 +423,21 @@ var Score = new function () {
                 var n = parseInt(scoreString[i], 10);
                 scoreDisplay.addChild(numberGroup.children[n].clone());
                 scoreDisplay.lastChild.position = [22 + i * 24, 22];
+                // if (nightMode) {
+                //     scoreDisplay.strokeColor = "white";
+                // } else {
+                //     scoreDisplay.strokeColor = "black";
+                // }
             }
-        }
+        },
+
+        // updateColor: function () {
+        //     if (nightMode) {
+        //         scoreDisplay.strokeColor = "white";
+        //     } else {
+        //         scoreDisplay.strokeColor = "black";
+        //     }
+        // }
     };
 };
 
@@ -483,6 +511,41 @@ var vector = new Point({
     angle: 45,
     length: 0
 });
+
+var nightModeButton = document.getElementById('nightmode');
+var nightMode = true;
+
+nightModeButton.onclick = function () {
+    var body = document.getElementsByTagName("body")[0];
+    // var container = document.querySelector(".container .box .title h1");
+    var h1 = document.getElementsByTagName("h1")[0];
+    var p = document.getElementsByTagName("p");
+    var button = document.getElementsByTagName("i")[0];
+    // var span = document.getElementsByTagName("span")[0];
+    if (nightMode) {
+        body.classList.remove("darkmode");
+        body.classList.add("lightmode");
+        h1.style.color = "black";
+        button.style.color = "black";
+        for (var i=0; i < p.length; i++) {
+            p[i].style.color = "black";
+        }
+        Ship.item.strokeColor = "black";
+        Score.updateColor();
+    } else {
+        body.classList.add("darkmode");
+        body.classList.remove("lightmode");
+        h1.classList.remove("lightmode");
+        h1.style.color = "white";
+        button.style.color = "white";
+        for (var i=0; i < p.length; i++) {
+            p[i].style.color = "white";
+        }
+        Ship.item.strokeColor = "white";
+        Score.updateColor();
+    }
+    nightMode = !nightMode
+}
 
 // var mouseVector = vector.clone();
 

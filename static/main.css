@@ -17,7 +17,7 @@ canvas {
 }
 
 body {
-  background: #000;
+  background-color: black;
   font-family: Helvetica,Arial;
 }
 
@@ -62,6 +62,7 @@ section {
       -ms-flex-align: center;
           align-items: center;
   padding-top: 3%;
+  color: white;
 }
 
 .container .box {
@@ -104,7 +105,6 @@ section {
 
 .container .box .title h1 {
   font-family: 'Georgia';
-  color: #FFF;
   font-size: 72px;
   -webkit-animation: mainFadeIn 1s forwards;
   animation: mainFadeIn 1s forwards;
@@ -157,7 +157,6 @@ section {
   opacity: 0;
   font-weight: 400;
   font-family: 'Georgia';
-  color: #FFF;
   font-size: 32px;
   text-transform: uppercase;
   letter-spacing: 5px;
@@ -317,5 +316,70 @@ section {
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;
+}
+
+#nightmode {
+  background-color: transparent;
+  border: none;
+  margin-left: 5px;
+  color: white;
+}
+
+.lightmode {
+  -webkit-animation: darkToLight 1s ease;
+          animation: darkToLight 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.darkmode {
+  -webkit-animation: lightToDark 1s ease;
+          animation: lightToDark 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes darkToLight {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes darkToLight {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@-webkit-keyframes lightToDark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
+}
+
+@keyframes lightToDark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
 }
 /*# sourceMappingURL=main.css.map */
