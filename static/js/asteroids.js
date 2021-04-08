@@ -1,36 +1,25 @@
 var vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
 var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
-// console.log(vw)
-// console.log(vh)
 
 var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
     rockCount: Math.round((vw/200) + (vh/300)),
+    gameStart: false
 };
 
 function initialize() {
-    setTimeout(function () { Rocks.add(presets.rockCount); }, 1800);
+    setTimeout(function () { Rocks.add(presets.rockCount); Ship.make(); }, 1800);
     Score.update();
-    // Lives.initialize();
 }
 
 function onKeyUp(event) {
-    // if (event.key == 'space') {
-    //     Ship.moveTo(Point.random() * view.size);
-    //     Ship.stop();
-    // }
     if (event.key == 'space') {
         Ship.fire();
+        if (!presets.gameStart) {
+            presets.gameStart = true;
+        }
     }
-    // Show stats:
-    // if (event.key == 'f') {
-    //     var stats = document.getElementById('stats');
-    //     if (stats) {
-    //         stats.style.display = (stats.style.display == 'block')
-    //             ? 'none' : 'block';
-    //     }
-    // }
 }
 
 function onFrame() {
@@ -39,28 +28,25 @@ function onFrame() {
     Ship.checkCollisions();
     if (Key.isDown('left')) {
         Ship.turnLeft();
+        if (!presets.gameStart) {
+            presets.gameStart = true;
+        }
     }
     if (Key.isDown('right')) {
         Ship.turnRight();
+        if (!presets.gameStart) {
+            presets.gameStart = true;
+        }
     }
     if (Key.isDown('up')) {
         Ship.thrust();
+        if (!presets.gameStart) {
+            presets.gameStart = true;
+        }
     } else {
         Ship.coast();
     }
     Ship.move();
-
-    // vector = vector + (mouseVector - vector) / 30;
-
-    // Run through the active layer's children list and change
-    // the position of the placed symbols:
-    // for (var i = 0; i < count; i++) {
-    //     var item = project.activeLayer.children[i];
-    //     var size = item.bounds.size;
-    //     var length = vector.length / 10 * size.width / 10;
-    //     // item.position += vector.normalize(length) + item.data.vector;
-    //     keepInView(item);
-    // }
 }
 
 
@@ -75,7 +61,6 @@ var Game = {
         Game.roundDelay = false;
         Rocks.add(presets.rockCount);
     },
-    // Stats.js by Mr. Doob - https://github.com/mrdoob/stats.js
 };
 
 var assets = {
@@ -105,6 +90,7 @@ var Ship = new function () {
     var integerOverflow = false;
     var thrust = new Path([-4, -9], [0, -14], [4, -9]);
     var group = new Group(path, thrust);
+    group.opacity = 0;
     // group.position = view.bounds.center;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
@@ -117,6 +103,10 @@ var Ship = new function () {
             angle: 0.2,
             length: 0
         }),
+
+        make: function () {
+            this.item.opacity = 1;
+        },
 
         turnLeft: function () {
             group.rotate(-3);
@@ -203,11 +193,8 @@ var Ship = new function () {
                 var children = this.destroyedShip.children;
                 children[0].position.x++;
                 children[1].position.x--;
-                // children[2].position.x--;
-                // children[2].position.y++;
                 children[0].rotate(1);
                 children[1].rotate(-1);
-                // children[2].rotate(1);
                 this.destroyedShip.opacity *= 0.98;
 
                 // don't update anything else if the ship is already dead.
@@ -221,7 +208,7 @@ var Ship = new function () {
                 tempRock.transform(crashRock.matrix);
                 tempRock.remove();
                 var intersections = this.item.firstChild.getIntersections(tempRock);
-                if (intersections.length > 0) {
+                if (intersections.length > 0 && presets.gameStart) {
                     Ship.destroy();
                     setTimeout(function () { Ship.destroyed(); }, 1200);
                 }
