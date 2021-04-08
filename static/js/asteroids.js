@@ -9,7 +9,8 @@ var presets = {
 };
 
 function initialize() {
-    setTimeout(function () { Rocks.add(presets.rockCount); Ship.make(); }, 1800);
+    Rocks.add(presets.rockCount);
+    setTimeout(function () { Ship.make(); }, 1800);
     Score.update();
 }
 
@@ -298,7 +299,7 @@ var Rocks = new function () {
     ];
     for (var i = 0; i < 4; i++) {
         shapes[i].fillColor = "black";
-        shapes[i].strokeWidth = 2;
+        shapes[i].strokeWidth = 1.5;
     }
 
     // medium rocks

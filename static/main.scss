@@ -201,6 +201,9 @@ section {
 
 #footer {
   background-color: transparent;
+  animation: secFadeIn 1s forwards;
+  animation-delay: 1.6s;
+  opacity: 0;
 }
 
 .instructions {
@@ -210,4 +213,13 @@ section {
   align-items: center;
   justify-content: center;
   font-family: Georgia;
+  animation: secFadeIn 1s forwards;
+  animation-delay: 1.6s;
+  opacity: 0;
+}
+
+#canvas {
+  animation: secFadeIn 1s forwards;
+  animation-delay: 1.6s;
+  opacity: 0;
 }

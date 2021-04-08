@@ -284,6 +284,11 @@ section {
 
 #footer {
   background-color: transparent;
+  -webkit-animation: secFadeIn 1s forwards;
+          animation: secFadeIn 1s forwards;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  opacity: 0;
 }
 
 .instructions {
@@ -299,5 +304,18 @@ section {
       -ms-flex-pack: center;
           justify-content: center;
   font-family: Georgia;
+  -webkit-animation: secFadeIn 1s forwards;
+          animation: secFadeIn 1s forwards;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  opacity: 0;
+}
+
+#canvas {
+  -webkit-animation: secFadeIn 1s forwards;
+          animation: secFadeIn 1s forwards;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  opacity: 0;
 }
 /*# sourceMappingURL=main.css.map */
