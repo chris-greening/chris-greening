@@ -1,3 +1,8 @@
+// const vw = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0)
+// const vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight || 0)
+// console.log(vw)
+// console.log(vh)
+
 var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
@@ -80,8 +85,8 @@ var assets = {
     destroyedShip: new function () {
         var group = new Group(
             new Path([-10, -8], [10, 0]),
-            new Path([10, 0], [-10, 8]),
-            new Path([-8, 4], [-8, -4])
+            new Path([10, 0], [-10, 8])
+            // new Path([-8, 4], [-8, -4])
         );
         group.visible = false;
         return group;
@@ -95,21 +100,25 @@ var assets = {
 };
 
 var Ship = new function () {
-    var path = new Path([-10, -8], [10, 0], [-10, 8]);
+    var path = new Path([-8.5, -12], [0, 6], [9, -12]);
+    path.strokeWidth = 2.5;
+    path.strokeColor = "white";
     path.fillColor = "black";
-    path.closed = true;
+    // path.closed = true;
     var integerOverflow = false;
-    var thrust = new Path([-8, -4], [-14, 0], [-8, 4]);
+    var thrust = new Path([-4, -9], [0, -14], [4, -9]);
     var group = new Group(path, thrust);
-    group.position = view.bounds.center;
+    // group.position = view.bounds.center;
+    var v = getStartPosition();
+    group.position = new Point(v.x, v.y);
     return {
         item: group,
 
-        angle: 0,
+        angle: 90,
 
         vector: new Point({
             angle: 0.2,
-            length: 1
+            length: 0
         }),
 
         turnLeft: function () {
@@ -164,13 +173,18 @@ var Ship = new function () {
             this.item.visible = false;
             this.stop();
             this.item.position = view.center;
+            // var v = getStartPosition();
+            this.item.position = new Point(v.x, v.y);
             this.dying = true;
         },
 
         destroyed: function () {
             this.item.visible = true;
             this.stop();
+            // var v = getStartPosition();
+            // this.item.position = new Point(v.x, v.y);
             this.item.position = view.center;
+            this.item.angle = 90;
             this.dying = false;
             this.destroyedShip.visible = false;
         },
@@ -192,11 +206,11 @@ var Ship = new function () {
                 var children = this.destroyedShip.children;
                 children[0].position.x++;
                 children[1].position.x--;
-                children[2].position.x--;
-                children[2].position.y++;
+                // children[2].position.x--;
+                // children[2].position.y++;
                 children[0].rotate(1);
                 children[1].rotate(-1);
-                children[2].rotate(1);
+                // children[2].rotate(1);
                 this.destroyedShip.opacity *= 0.98;
 
                 // don't update anything else if the ship is already dead.
@@ -442,6 +456,15 @@ function keepInView(item) {
 
     if (position.y < -itemBounds.height) {
         position.y = bounds.height + itemBounds.height / 2;
+    }
+}
+
+function getStartPosition() {
+    var v = document.getElementById("ship-position")
+    var rect = v.getBoundingClientRect()
+    return {
+        x: (rect.right + rect.left) / 2 - 2,
+        y: (rect.top + rect.bottom) / 2
     }
 }
 

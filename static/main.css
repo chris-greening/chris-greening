@@ -247,7 +247,7 @@ section {
     opacity: 0;
   }
   100% {
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 
@@ -256,7 +256,7 @@ section {
     opacity: 0;
   }
   100% {
-    opacity: 0.8;
+    opacity: 1;
   }
 }
 
