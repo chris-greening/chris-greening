@@ -559,7 +559,12 @@ var backgroundMusic = document.getElementById("background-song");
 var pauseButton = document.getElementById("pause-button");
 var crtEffectButton = document.getElementById("crt-effect");
 
-nightModeButton.onclick = function () {
+nightModeButton.onclick = nightModeToggle;
+
+function nightModeToggle() {
+    if (presets.crtEffect) {
+        return;
+    }
     var body = document.getElementsByTagName("body")[0];
     // var container = document.querySelector(".container .box .title h1");
     var h1 = document.getElementsByTagName("h1")[0];
@@ -619,7 +624,9 @@ pauseButton.onclick = function () {
 
 crtEffectButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
-
+    if (!presets.nightMode) {
+        nightModeToggle();
+    }
     if (presets.crtEffect) {
         body.classList.remove("crt");
     } else {
