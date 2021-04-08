@@ -7,7 +7,8 @@ var presets = {
     rockCount: Math.round((vw/200) + (vh/300)),
     gameStart: false,
     nightMode: true,
-    soundEnabled: false
+    soundEnabled: false,
+    pause: false
 };
 
 function initialize() {
@@ -31,33 +32,35 @@ function onKeyUp(event) {
 }
 
 function onFrame() {
-    Bullets.move();
-    Rocks.iterateExplosions();
-    Ship.checkCollisions();
-    if (Key.isDown('left')) {
-        Ship.turnLeft();
-        if (!presets.gameStart) {
-            presets.gameStart = true;
+    if (!presets.pause) {
+        Bullets.move();
+        Rocks.iterateExplosions();
+        Ship.checkCollisions();
+        if (Key.isDown('left')) {
+            Ship.turnLeft();
+            if (!presets.gameStart) {
+                presets.gameStart = true;
+            }
         }
-    }
-    if (Key.isDown('right')) {
-        Ship.turnRight();
-        if (!presets.gameStart) {
-            presets.gameStart = true;
+        if (Key.isDown('right')) {
+            Ship.turnRight();
+            if (!presets.gameStart) {
+                presets.gameStart = true;
+            }
         }
-    }
-    if (Key.isDown('up')) {
-        Ship.thrust();
-        if (!presets.gameStart) {
-            presets.gameStart = true;
-        }
-    if (Key.isDown("n")) {
+        if (Key.isDown('up')) {
+            Ship.thrust();
+            if (!presets.gameStart) {
+                presets.gameStart = true;
+            }
+        if (Key.isDown("n")) {
 
+        }
+        } else {
+            Ship.coast();
+        }
+        Ship.move();
     }
-    } else {
-        Ship.coast();
-    }
-    Ship.move();
 }
 
 
@@ -552,6 +555,7 @@ var vector = new Point({
 var nightModeButton = document.getElementById('nightmode');
 var soundEffectsButton = document.getElementById('sound-effects');
 var backgroundMusic = document.getElementById("background-song");
+var pauseButton = document.getElementById("pause-button");
 
 nightModeButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
@@ -596,5 +600,18 @@ soundEffectsButton.onclick = function () {
         backgroundMusic.play()
     }
     presets.soundEnabled = !presets.soundEnabled;
+}
+
+pauseButton.onclick = function () {
+    if (presets.pause) {
+        pauseButton.classList.remove("fa-play");
+        pauseButton.classList.add("fa-pause");
+        // backgroundMusic.muted = true;
+    } else {
+        pauseButton.classList.remove("fa-pause");
+        pauseButton.classList.add("fa-play");
+        // backgroundMusic.muted = false;
+    }
+    presets.pause = !presets.pause;
 }
 
