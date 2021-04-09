@@ -121,6 +121,12 @@ section {
   z-index: -1;
 }
 
+@media (max-width: 720px) {
+  .container .box .title h1 {
+    font-size: 40px;
+  }
+}
+
 .container .box .role {
   width: 100%;
   position: relative;
@@ -161,6 +167,12 @@ section {
   text-transform: uppercase;
   letter-spacing: 5px;
   z-index: -1;
+}
+
+@media (max-width: 720px) {
+  .container .box .role p {
+    font-size: 20px;
+  }
 }
 
 @-webkit-keyframes mainBlock {
@@ -308,6 +320,12 @@ section {
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;
+}
+
+@media (max-width: 720px) {
+  .instructions {
+    font-size: 12px;
+  }
 }
 
 #canvas {

@@ -97,6 +97,9 @@ section {
         align-items: baseline;
         position: relative;
         z-index: -1;
+        @media (max-width: 720px) {
+          font-size: 40px;
+        }
       }
     }
 
@@ -129,7 +132,9 @@ section {
         text-transform: uppercase;
         letter-spacing: 5px;
         z-index: -1;
-
+        @media (max-width: 720px) {
+          font-size: 20px;
+        }
       }
     }
   }
@@ -216,6 +221,9 @@ section {
   animation: secFadeIn 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
+  @media (max-width: 720px) {
+    font-size: 12px;
+  }
 }
 
 #canvas {
