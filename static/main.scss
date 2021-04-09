@@ -226,6 +226,12 @@ section {
   }
 }
 
+#instructions-text {
+  @media (max-width: 720px) {
+    display: none;
+  }
+}
+
 #canvas {
   animation: secFadeIn 1s forwards;
   animation-delay: 1.6s;

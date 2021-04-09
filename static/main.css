@@ -328,6 +328,12 @@ section {
   }
 }
 
+@media (max-width: 720px) {
+  #instructions-text {
+    display: none;
+  }
+}
+
 #canvas {
   -webkit-animation: secFadeIn 1s forwards;
           animation: secFadeIn 1s forwards;
