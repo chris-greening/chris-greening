@@ -558,6 +558,7 @@ var soundEffectsButton = document.getElementById('sound-effects');
 var backgroundMusic = document.getElementById("background-song");
 var pauseButton = document.getElementById("pause-button");
 var crtEffectButton = document.getElementById("crt-effect");
+var musicCredit = document.getElementById("music-credit")
 
 nightModeButton.onclick = nightModeToggle;
 
@@ -598,11 +599,13 @@ soundEffectsButton.onclick = function () {
     if (presets.soundEnabled) {
         soundEffectsButton.classList.remove("fa-volume-up");
         soundEffectsButton.classList.add("fa-volume-mute");
+        musicCredit.style.display = "none";
         // backgroundMusic.muted = true;
         backgroundMusic.pause()
     } else {
         soundEffectsButton.classList.remove("fa-volume-mute");
         soundEffectsButton.classList.add("fa-volume-up");
+        musicCredit.style.display = "inline";
         // backgroundMusic.muted = false;
         backgroundMusic.play()
     }

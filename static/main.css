@@ -706,4 +706,9 @@ section {
   -webkit-animation: textShadow 1.6s infinite;
           animation: textShadow 1.6s infinite;
 }
+
+#music-credit {
+  display: none;
+  font-size: 12px;
+}
 /*# sourceMappingURL=main.css.map */
