@@ -328,7 +328,7 @@ section {
   }
 }
 
-@media (max-width: 720px) {
+@media (max-width: 480px) {
   #instructions-text {
     display: none;
   }
