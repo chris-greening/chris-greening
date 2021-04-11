@@ -56,32 +56,6 @@ section {
   opacity: 0;
 }
 
-.instructions {
-  font-family: Georgia;
-  font-size: 16px;
-  -webkit-animation: fade-in 1s forwards;
-  -o-animation: fade-in 1s forwards;
-  animation: fade-in 1s forwards;
-  animation-delay: 1.6s;
-  opacity: 0;
-  z-index: -1;
-  @media (max-width: 720px) {
-    font-size: 12px;
-  }
-
-  justify-content: center;
-  align-items: center;
-  color: white;
-  display: flex;
-
-}
-
-#instructions-text {
-  @media (max-width: 480px) {
-    display: none;
-  }
-}
-
 #canvas {
   animation: fade-in 1s forwards;
   animation-delay: 1.6s;
@@ -125,9 +99,4 @@ section {
     background-color: black;
     color: white;
   }
-}
-
-#music-credit {
-  display: none;
-  font-size: 12px;
 }
