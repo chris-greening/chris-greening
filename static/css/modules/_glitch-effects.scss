@@ -1,0 +1,136 @@
+// CRT screen glitch effect
+$crt-blue: rgba(0, 30, 255, 0.5);
+$crt-red: rgba(255, 0, 80, 0.3);
+
+@mixin flicker-effect {
+  // Flicker the opacity of the text from 0% to 100% in steps of 5
+  $percent: 0;
+  $flicker-opacities: 0.27861, 0.34769, 0.23604, 0.90626, 0.18128, 0.83891, 0.65583, 0.67807, 0.26559, 0.84693, 0.96019, 0.08594, 0.20313, 0.71988, 0.53455, 0.37288, 0.71428, 0.70419, 0.7003, 0.36108, 0.24387;
+  @each $flick in $flicker-opacities {
+    #{$percent * 1%} {
+      opacity: $flick;
+    }
+    $percent: $percent + 5;
+  }
+}
+
+@mixin text-shadow-effect {
+  // Add CRT text shadow effect
+  $percent: 0;
+  $text-shadow-offset: 1px, 0.43899px, 2.7929px, 0.02956px, 0.40219px, 3.4794px, 1.61256px, 0.70156px, 3.89691px, 3.87091px, 2.23106px, 0.08084px, 2.37585px, 2.20219px, 2.86388px, 0.48874px, 1.89485px, 0.0833px, 0.0977px, 3.44334px, 2.18418px, 2.62088px;
+  @each $shadow in $text-shadow-offset {
+    #{$percent * 1%} {
+      text-shadow: $shadow 0 1px $crt-blue, -1*$shadow 0 1px $crt-red, 0 0 3px;
+    }
+    $percent: $percent + 5;
+  }
+}
+
+@-webkit-keyframes flicker {
+  @include flicker-effect;
+}
+
+@keyframes flicker {
+  @include flicker-effect;
+}
+
+@-webkit-keyframes text-shadow-animation {
+  @include text-shadow-effect;
+}
+
+@keyframes text-shadow-animation {
+  @include text-shadow-effect;
+}
+
+.crt::after {
+  -webkit-animation: flicker 0.15s infinite;
+          animation: flicker 0.15s infinite;
+}
+
+.crt {
+  -webkit-animation: text-shadow-animation 1.6s infinite;
+          animation: text-shadow-animation 1.6s infinite;
+}
+
+// Glitched text effect
+@mixin glitch-animation {
+  $percent: 0;
+  $top-values: 67px, 25px, 34px, 36px, 142px, 37px, 39px, 52px, 53px, 34px, 1px, 80px, 45px, 24px, 75px, 89px, 130px, 85px, 140px, 136px, 81px, 112px, 50px, 47px, 35px;
+  $bottom-values: 36px, 30px, 52px, 78px, 125px, 18px, 50px, 116px, 85px, 50px, 62px, 135px, 141px, 4px, 36px, 103px, 10px, 75px, 119px, 42px, 18px, 89px, 103px, 28px, 133px;
+  $i: 1;
+  @while $percent <= 100 {
+    $top: nth($top-values, $i);
+    $bottom: nth($bottom-values, $i);
+
+    #{$percent * 1%} {
+      clip: rect($top, 9999px, $bottom, 0);
+    }
+
+    $percent: $percent + 4.16666666666;
+    $i: $i + 1;
+  }
+}
+
+@mixin glitch-animation-2 {
+  $percent: 6.666666666;
+  $top-values: 45px, 49px, 52px, 112px, 0px, 33px, 134px, 19px, 119px, 21px, 149px, 93px, 38px, 119px, 52px, 139px, 117px, 140px, 39px, 130px, 95px, 120px, 61px, 72px, 45px, 134px, 117px, 6px, 60px;
+  $bottom-values: 75px, 42px, 129px, 4px, 33px, 7px, 72px, 56px, 34px, 51px, 99px, 77px, 60px, 28px, 37px, 42px, 45px, 41px, 90px, 56px, 71px, 17px, 92px, 26px, 95px, 64px, 126px, 87px, 122px;
+  $i: 1;
+  @while $percent <= 100 {
+    $top: nth($top-values, $i);
+    $bottom: nth($bottom-values, $i);
+
+    #{$percent * 1%} {
+      clip: rect($top, 9999px, $bottom, 0);
+    }
+
+    $percent: $percent + 3.33333333;
+    $i: $i + 1;
+  }
+}
+
+@-webkit-keyframes glitch-anim {
+  @include glitch-animation;
+}
+
+@keyframes glitch-anim {
+  @include glitch-animation;
+}
+
+@-webkit-keyframes glitch-anim-2 {
+  @include glitch-animation-2;
+}
+
+@keyframes glitch-anim-2 {
+  @include glitch-animation-2;
+}
+
+.glitch {
+  color: white;
+  font-size: 150px;
+  text-transform: upercase;
+  position: relative;
+  display: inline-block;
+}
+.glitch::before,
+.glitch::after {
+  content: attr(data-text);
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: black;
+}
+.glitch::before {
+  left: 4px;
+  text-shadow: -2px 0 #49FC00;
+  clip: rect(24px, 550px, 90px, 0);
+  animation: glitch-anim-2 6s infinite linear alternate-reverse;
+}
+.glitch::after {
+  left: -2px;
+  text-shadow: -2px 0 #b300fc;
+  clip: rect(85px, 550px, 140px, 0);
+  animation: glitch-anim 5s infinite linear alternate-reverse;
+}
