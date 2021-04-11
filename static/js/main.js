@@ -1,20 +1,11 @@
-// (async () => {
-//     console.log("waiting for variable");
-//     while (!window.app2 === null) // define the condition as you like
-//         await new Promise(resolve => setTimeout(resolve, 1000));
-//     console.log("variable is defined");
-// })();
-// window.app.initialize();
-
-
-// window.app.initialize();
-
 var backgroundMusic = document.getElementById("background-song");
 var soundEffectsButton = document.getElementById('sound-effects');
 var pauseButton = document.getElementById("pause-button");
 var crtEffectButton = document.getElementById("crt-effect");
 var musicCredit = document.getElementById("music-credit");
 var nightModeButton = document.getElementById('nightmode');
+var title = document.getElementsByTagName("h1")[0];
+var subtitle = document.getElementsByTagName("p")[0];
 
 function toggleIcon(icon, removeClass, addClass) {
     icon.classList.remove(removeClass);
@@ -84,15 +75,23 @@ pauseButton.onclick = function () {
 
 crtEffectButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
+    var crtTurningOn = new Audio("./static/js/crt-turning-on.mp3");
     if (!window.asteroids.presets.nightMode) {
         nightModeToggle();
     }
     if (window.asteroids.presets.crtEffect) {
         // Remove CRT filter 
         body.classList.remove("crt");
+        title.classList.remove("glitch");
+        subtitle.classList.remove("glitch");
     } else {
         // Add CRT filter
         body.classList.add("crt");
+        title.classList.add("glitch");
+        subtitle.classList.add("glitch");
+        if (window.asteroids.presets.soundEnabled) {
+            crtTurningOn.play();
+        }
     }
     window.asteroids.presets.crtEffect = !window.asteroids.presets.crtEffect;
 }
