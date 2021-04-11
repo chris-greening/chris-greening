@@ -1,4 +1,5 @@
 var backgroundMusic = document.getElementById("background-song");
+var crtStatic = document.getElementById("crt-static");
 var soundEffectsButton = document.getElementById('sound-effects');
 var pauseButton = document.getElementById("pause-button");
 var crtEffectButton = document.getElementById("crt-effect");
@@ -84,14 +85,14 @@ crtEffectButton.onclick = function () {
         body.classList.remove("crt");
         title.classList.remove("glitch");
         subtitle.classList.remove("glitch");
+        crtStatic.pause();
     } else {
         // Add CRT filter
         body.classList.add("crt");
         title.classList.add("glitch");
         subtitle.classList.add("glitch");
-        if (window.asteroids.presets.soundEnabled) {
-            crtTurningOn.play();
-        }
+        crtTurningOn.play();
+        crtStatic.play();
     }
     window.asteroids.presets.crtEffect = !window.asteroids.presets.crtEffect;
 }
