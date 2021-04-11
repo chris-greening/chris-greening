@@ -97,3 +97,23 @@
         }
     }
 }
+
+.instructions {
+  @include header-text(16px, 1.6s, 12px);
+
+  justify-content: center;
+  align-items: center;
+  color: white;
+  display: flex;
+
+  span {
+    @media (max-width: 480px) {
+      display: none;
+    }
+  }
+}
+
+#music-credit {
+  display: none;
+  font-size: 12px;
+}

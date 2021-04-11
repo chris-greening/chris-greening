@@ -1,5 +1,5 @@
 @import "modules/_glitch-effects";
-@import "modules/header-animation";
+@import "modules/primary-text";
 
 * {
   margin: 0;
@@ -57,18 +57,23 @@ section {
 }
 
 .instructions {
-  color: white;
-  font-size: 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
   font-family: Georgia;
+  font-size: 16px;
+  -webkit-animation: fade-in 1s forwards;
+  -o-animation: fade-in 1s forwards;
   animation: fade-in 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
+  z-index: -1;
   @media (max-width: 720px) {
     font-size: 12px;
   }
+
+  justify-content: center;
+  align-items: center;
+  color: white;
+  display: flex;
+
 }
 
 #instructions-text {
