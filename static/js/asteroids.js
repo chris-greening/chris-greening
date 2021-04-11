@@ -563,3 +563,4 @@ initialize();
 
 window.asteroids = {};
 window.asteroids.presets = presets;
+window.asteroids.Ship = Ship;
