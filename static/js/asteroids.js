@@ -519,11 +519,6 @@ var Score = new function () {
     };
 };
 
-// var vector = new Point({
-//     angle: 45,
-//     length: 0
-// });
-
 var nightModeButton = document.getElementById('nightmode');
 var soundEffectsButton = document.getElementById('sound-effects');
 var backgroundMusic = document.getElementById("background-song");
