@@ -239,6 +239,11 @@ var Ship = new function () {
             }
 
             if (this.dying) {
+                if (presets.nightMode) {
+                    this.destroyedShip.strokeColor = "white";
+                } else {
+                    this.destroyedShip.strokeColor = "black";
+                }
                 var children = this.destroyedShip.children;
                 children[0].position.x++;
                 children[1].position.x--;
