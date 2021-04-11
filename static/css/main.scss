@@ -1,5 +1,6 @@
 @import "modules/_glitch-effects";
 @import "modules/primary-text";
+@import "modules/night-mode";
 @import "font-awesome/fa-regular";
 @import "font-awesome/fa-solid";
 
@@ -64,41 +65,3 @@ section {
   opacity: 0;
 }
 
-#nightmode {
-  background-color: transparent;
-  border: none;
-  margin-left: 5px;
-  color: white;
-}
-
-.lightmode {
-  animation: darkToLight 1s ease;
-  animation-fill-mode:forwards;
-}
-
-.darkmode {
-  animation: lightToDark 1s ease;
-  animation-fill-mode:forwards;
-}
-
-@keyframes darkToLight {
-  from {
-    background-color: black;
-    color: white;
-  }
-  to {
-    background-color: white;
-    color: black;
-  }
-}
-
-@keyframes lightToDark {
-  from {
-    background-color: white;
-    color: black;
-  }
-  to {
-    background-color: black;
-    color: white;
-  }
-}

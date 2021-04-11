@@ -885,6 +885,68 @@
   font-size: 12px;
 }
 
+#nightmode {
+  margin-left: 5px;
+}
+
+.lightmode {
+  -webkit-animation: dark-to-light 1s ease;
+          animation: dark-to-light 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+.darkmode {
+  -webkit-animation: light-to-dark 1s ease;
+          animation: light-to-dark 1s ease;
+  -webkit-animation-fill-mode: forwards;
+          animation-fill-mode: forwards;
+}
+
+@-webkit-keyframes dark-to-light {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes dark-to-light {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@-webkit-keyframes light-to-dark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
+}
+
+@keyframes light-to-dark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -948,70 +1010,5 @@ section {
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;
-}
-
-#nightmode {
-  background-color: transparent;
-  border: none;
-  margin-left: 5px;
-  color: white;
-}
-
-.lightmode {
-  -webkit-animation: darkToLight 1s ease;
-          animation: darkToLight 1s ease;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-.darkmode {
-  -webkit-animation: lightToDark 1s ease;
-          animation: lightToDark 1s ease;
-  -webkit-animation-fill-mode: forwards;
-          animation-fill-mode: forwards;
-}
-
-@-webkit-keyframes darkToLight {
-  from {
-    background-color: black;
-    color: white;
-  }
-  to {
-    background-color: white;
-    color: black;
-  }
-}
-
-@keyframes darkToLight {
-  from {
-    background-color: black;
-    color: white;
-  }
-  to {
-    background-color: white;
-    color: black;
-  }
-}
-
-@-webkit-keyframes lightToDark {
-  from {
-    background-color: white;
-    color: black;
-  }
-  to {
-    background-color: black;
-    color: white;
-  }
-}
-
-@keyframes lightToDark {
-  from {
-    background-color: white;
-    color: black;
-  }
-  to {
-    background-color: black;
-    color: white;
-  }
 }
 /*# sourceMappingURL=main.css.map */

@@ -1,0 +1,35 @@
+#nightmode {
+  margin-left: 5px;
+}
+
+.lightmode {
+  animation: dark-to-light 1s ease;
+  animation-fill-mode:forwards;
+}
+
+.darkmode {
+  animation: light-to-dark 1s ease;
+  animation-fill-mode:forwards;
+}
+
+@keyframes dark-to-light {
+  from {
+    background-color: black;
+    color: white;
+  }
+  to {
+    background-color: white;
+    color: black;
+  }
+}
+
+@keyframes light-to-dark {
+  from {
+    background-color: white;
+    color: black;
+  }
+  to {
+    background-color: black;
+    color: white;
+  }
+}
