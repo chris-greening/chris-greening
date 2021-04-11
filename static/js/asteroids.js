@@ -4,7 +4,8 @@ var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight
 var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
-    rockCount: Math.round((vw/200) + (vh/300)),
+    // rockCount: Math.round((vw/200) + (vh/300)),
+    rockCount: 1,
     gameStart: false,
     nightMode: true,
     soundEnabled: false,
@@ -12,12 +13,13 @@ var presets = {
     crtEffect: false
 };
 
-function initialize() {
-    // assets.soundEffects['music'] = new Audio("./static/js/song.mp3");
-    // // assets.soundEffects['music'].volume = .5;
-    // assets.soundEffects['music'].load();
-    // // assets.soundEffects['music'].play();
+function checkGameStart() {
+    if (!presets.gameStart) {
+        presets.gameStart = true;
+    }
+}
 
+function initialize() {
     Rocks.add(presets.rockCount);
     setTimeout(function () { Ship.make(); }, 1800);
     Score.update();
@@ -26,9 +28,7 @@ function initialize() {
 function onKeyUp(event) {
     if (event.key == 'space') {
         Ship.fire();
-        if (!presets.gameStart) {
-            presets.gameStart = true;
-        }
+        checkGameStart();
     }
 }
 
@@ -39,24 +39,15 @@ function onFrame() {
         Ship.checkCollisions();
         if (Key.isDown('left')) {
             Ship.turnLeft();
-            if (!presets.gameStart) {
-                presets.gameStart = true;
-            }
+            checkGameStart();
         }
         if (Key.isDown('right')) {
             Ship.turnRight();
-            if (!presets.gameStart) {
-                presets.gameStart = true;
-            }
+            checkGameStart();
         }
         if (Key.isDown('up')) {
             Ship.thrust();
-            if (!presets.gameStart) {
-                presets.gameStart = true;
-            }
-        if (Key.isDown("n")) {
-
-        }
+            checkGameStart();
         } else {
             Ship.coast();
         }
@@ -68,10 +59,6 @@ function onFrame() {
 project.currentStyle.strokeColor = 'white';
 
 var Game = {
-    roundDelay: false,
-    over: function () {
-        document.getElementById('gameover').style.display = 'block';
-    },
     newRound: function () {
         Game.roundDelay = false;
         Rocks.add(presets.rockCount);
@@ -112,7 +99,6 @@ var Ship = new function () {
     var thrust = new Path([-4, -9], [0, -18], [4, -9]);
     var group = new Group(path, thrust);
     group.opacity = 0;
-    // group.position = view.bounds.center;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
 
@@ -244,21 +230,6 @@ var Ship = new function () {
         }
     };
 };
-
-function sound(src) {
-    this.sound = document.createElement("audio");
-    this.sound.src = src;
-    this.sound.setAttribute("preload", "auto");
-    this.sound.setAttribute("controls", "none");
-    this.sound.style.display = "none";
-    document.body.appendChild(this.sound);
-    this.play = function () {
-        this.sound.play();
-    }
-    this.stop = function () {
-        this.sound.pause();
-    }
-}
 
 var Bullets = new function () {
     var group = new Group();
