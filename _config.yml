@@ -26,6 +26,7 @@ baseurl: "/chris-greening" # the subpath of your site, e.g. /blog
 url: "https://chris-greening.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: ChrisGreening
 github_username:  chris-greening
+name: &name Chris Greening
 
 # Build settings
 theme: minimal-mistakes-jekyll
@@ -59,6 +60,19 @@ defaults:
     values:
       layout: single
       author_profile: true
+
+twitter:
+  username         : &twitter "ChrisGreening"
+
+author:
+  name             : *name
+  avatar           : "images/chris-greening.jpg"
+  bio              : "Software developer with 3+ years of experience."
+  location         : "New York metropolitan area"
+  email            : "chris@christophergreening.com"
+  github           : "chris-greening"
+  linkedin         : "chris-greening-646411139"
+  twitter          : *twitter
 
 footer:
   links:
