@@ -129,14 +129,12 @@ var Game = {
 };
 
 var Ship = new function () {
-    var path = new Path([-7, -15], [0, 2], [7, -15]);
-    path.strokeWidth = 2.5;
-    path.strokeColor = "white";
-    // path.fillColor = "black";
-    // path.closed = true;
+    var ship = new Path([-7, -15], [0, 2], [7, -15]);
+    ship.strokeWidth = 2.5;
+    ship.strokeColor = "white";
     var integerOverflow = false;
     var thrust = new Path([-4, -9], [0, -18], [4, -9]);
-    var group = new Group(path, thrust);
+    var group = new Group(ship, thrust);
     group.opacity = 0;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
