@@ -520,12 +520,6 @@ var Score = new function () {
     };
 };
 
-initialize();
-
-
-
-// Place the instances of the symbol:
-
 var vector = new Point({
     angle: 45,
     length: 0
@@ -616,3 +610,4 @@ crtEffectButton.onclick = function () {
     presets.crtEffect = !presets.crtEffect;
 }
 
+initialize();
