@@ -859,10 +859,6 @@ body {
   padding: 0px;
 }
 
-body, html {
-  overflow: hidden;
-}
-
 .masthead {
   display: none;
 }
