@@ -16,8 +16,8 @@ var presets = {
 
 var assets = {
     soundEffects: {
-        'deathExplosion': new Audio("./static/js/explosion.mp3"),
-        'lazer': new Audio("./static/js/lazer.mp3"),
+        'deathExplosion': new Audio("./static/js/sounds/explosion.mp3"),
+        'lazer': new Audio("./static/js/sounds/lazer.mp3"),
     },
     destroyedShip: new function () {
         var group = new Group(

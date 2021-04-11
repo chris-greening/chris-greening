@@ -76,7 +76,7 @@ pauseButton.onclick = function () {
 
 crtEffectButton.onclick = function () {
     var body = document.getElementsByTagName("body")[0];
-    var crtTurningOn = new Audio("./static/js/crt-turning-on.mp3");
+    var crtTurningOn = new Audio("./static/js/sounds/crt-turning-on.mp3");
     if (!window.asteroids.presets.nightMode) {
         nightModeToggle();
     }
