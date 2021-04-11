@@ -5,7 +5,7 @@ var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
     rockCount: Math.round((vw/200) + (vh/300)),
-    starCount: 150,
+    starCount: Math.round((vw / 10) + (vh / 20)),
     gameStart: false,
     nightMode: true,
     soundEnabled: false,
@@ -20,8 +20,7 @@ function checkGameStart() {
 }
 
 function initialize() {
-    console.log(Stars)
-    Stars.add(presets.starCount);
+    Stars.create_all(presets.starCount);
     Rocks.add(presets.rockCount);
     setTimeout(function () { Ship.make(); }, 1800);
     Score.update();
@@ -300,7 +299,6 @@ var Bullets = new function () {
     };
 };
 
-// Create a symbol, which we will use to place instances of later:
 var Stars = new function () {
     var group = new Group();
     var shape = new Path.Circle({
@@ -310,11 +308,10 @@ var Stars = new function () {
         strokeColor: 'black'
     });
     var symbol = new SymbolDefinition(shape);
-    console.log("TEST");
 
     return {
         symbol: symbol,
-        add: function (amount) {
+        create_all: function (amount) {
             for (var i = 0; i < amount; i++) {
                 var star = this.make(i);
                 group.addChild(star);
@@ -323,7 +320,6 @@ var Stars = new function () {
         },
 
         make: function (i) {
-            // The center position is a random point in the view:
             var center = Point.random() * view.size;
             var star = symbol.place(center);
             var scale = (i + 1) / presets.starCount;
