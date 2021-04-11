@@ -484,6 +484,7 @@ var Score = new function () {
     );
     numberGroup.visible = false;
     var scoreDisplay = new Group();
+
     var score = 0;
     return {
         update: function (type) {
@@ -501,11 +502,11 @@ var Score = new function () {
                 var n = parseInt(scoreString[i], 10);
                 scoreDisplay.addChild(numberGroup.children[n].clone());
                 scoreDisplay.lastChild.position = [22 + i * 24, 22];
-                // if (presets.nightMode) {
-                //     scoreDisplay.strokeColor = "white";
-                // } else {
-                //     scoreDisplay.strokeColor = "black";
-                // }
+            }
+            if (presets.nightMode) {
+                scoreDisplay.strokeColor = "white";
+            } else {
+                scoreDisplay.strokeColor = "black";
             }
         },
 
@@ -519,48 +520,14 @@ var Score = new function () {
     };
 };
 
-var nightModeButton = document.getElementById('nightmode');
-
-
-nightModeButton.onclick = nightModeToggle;
-
-function applyNightModeStyles(elements, removeClass, addClass, color) {
-    elements.body.classList.remove(removeClass);
-    elements.body.classList.add(addClass);
-    elements.h1.style.color = color;
-    elements.button.style.color = color;
-    Ship.item.strokeColor = color;
-    for (var i = 0; i < elements.p.length; i++) {
-        elements.p[i].style.color = color;
-    }
-}
-
-function nightModeToggle() {
-    // Prevent night mode from being toggled if in CRT mode
-    if (presets.crtEffect) {
-        return;
-    }
-
-    // Elements affected by toggling night mode
-    var nightModeElements = {
-        body: document.getElementsByTagName("body")[0],
-        h1: document.getElementsByTagName("h1")[0],
-        p: document.getElementsByTagName("p"),
-        button: document.getElementsByTagName("i")[0]
-    }
-    if (presets.nightMode) {
-        // dark to light
-        applyNightModeStyles(nightModeElements, "darkmode", "lightmode", "black");
-    } else {
-        // light to dark
-        applyNightModeStyles(nightModeElements, "lightmode", "darkmode", "white");
-    }
-    presets.nightMode = !presets.nightMode
-}
-
-
 initialize();
 
+// Load game data into JSON for access in other JS scripts
 window.asteroids = {};
 window.asteroids.presets = presets;
 window.asteroids.Ship = Ship;
+window.asteroids.Rocks = Rocks;
+window.asteroids.Game = Game;
+window.asteroids.Stars = Stars;
+window.asteroids.Bullets = Bullets;
+window.asteroids.Score = Score;

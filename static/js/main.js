@@ -52,7 +52,8 @@ function nightModeToggle() {
         // light to dark
         applyNightModeStyles(nightModeElements, "lightmode", "darkmode", "white");
     }
-    window.asteroids.presets.nightMode = !window.asteroids.presets.nightMode
+    window.asteroids.presets.nightMode = !window.asteroids.presets.nightMode;
+    window.asteroids.Score.update();
 }
 
 soundEffectsButton.onclick = function () {
