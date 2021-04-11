@@ -647,134 +647,6 @@
   animation: glitch-anim 5s infinite linear alternate-reverse;
 }
 
-#chris-greening {
-  width: 100%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  padding-top: 3%;
-  color: white;
-}
-
-#chris-greening .box {
-  height: 250px;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-      -ms-flex-direction: column;
-          flex-direction: column;
-}
-
-#chris-greening .box .title {
-  width: 100%;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  height: 64px;
-  margin-top: 100px;
-}
-
-#chris-greening .box .title .block {
-  width: 0%;
-  height: inherit;
-  background: #ffb510;
-  position: absolute;
-  -webkit-animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-          animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: -20px;
-}
-
-#chris-greening .box .title h1 {
-  font-family: 'Georgia';
-  font-size: 72px;
-  -webkit-animation: fade-in 1s forwards;
-  animation: fade-in 1s forwards;
-  -webkit-animation-delay: 0.8s;
-          animation-delay: 0.8s;
-  opacity: 0;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: baseline;
-      -ms-flex-align: baseline;
-          align-items: baseline;
-  position: relative;
-  z-index: -1;
-}
-
-@media (max-width: 720px) {
-  #chris-greening .box .title h1 {
-    font-size: 40px;
-  }
-}
-
-#chris-greening .box .subtitle {
-  width: 100%;
-  position: relative;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  -webkit-box-align: center;
-      -ms-flex-align: center;
-          align-items: center;
-  -webkit-box-pack: center;
-      -ms-flex-pack: center;
-          justify-content: center;
-  height: 30px;
-  margin-top: 10px;
-}
-
-#chris-greening .box .subtitle .block {
-  width: 0%;
-  height: inherit;
-  background: #e91e63;
-  position: absolute;
-  -webkit-animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-          animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
-  -webkit-animation-delay: 1s;
-          animation-delay: 1s;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: flex;
-  margin-top: -40px;
-}
-
-#chris-greening .box .subtitle p {
-  -webkit-animation: fade-in 1s forwards;
-          animation: fade-in 1s forwards;
-  -webkit-animation-delay: 1.6s;
-          animation-delay: 1.6s;
-  opacity: 0;
-  font-weight: 400;
-  font-family: 'Georgia';
-  font-size: 32px;
-  text-transform: uppercase;
-  letter-spacing: 5px;
-  z-index: -1;
-}
-
-@media (max-width: 720px) {
-  #chris-greening .box .subtitle p {
-    font-size: 20px;
-  }
-}
-
 @-webkit-keyframes sliding-block {
   0% {
     width: 0%;
@@ -820,6 +692,130 @@
   }
   100% {
     opacity: 1;
+  }
+}
+
+#chris-greening {
+  width: 100%;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding-top: 3%;
+  color: white;
+}
+
+#chris-greening .box {
+  height: 250px;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+}
+
+#chris-greening .box .title {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 64px;
+  margin-top: 100px;
+}
+
+#chris-greening .box .title .block {
+  width: 0%;
+  height: inherit;
+  background: #ffb510;
+  position: absolute;
+  -webkit-animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+          animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -20px;
+}
+
+#chris-greening .box .title h1 {
+  font-family: 'Georgia';
+  font-size: 72px;
+  -webkit-animation: fade-in 1s forwards;
+  animation: fade-in 1s forwards;
+  -webkit-animation-delay: 0.8s;
+          animation-delay: 0.8s;
+  opacity: 0;
+  z-index: -1;
+}
+
+@media (max-width: 720px) {
+  #chris-greening .box .title h1 {
+    font-size: 40px;
+  }
+}
+
+#chris-greening .box .subtitle {
+  width: 100%;
+  position: relative;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 30px;
+  margin-top: 10px;
+}
+
+#chris-greening .box .subtitle .block {
+  width: 0%;
+  height: inherit;
+  background: #e91e63;
+  position: absolute;
+  -webkit-animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+          animation: sliding-block 1s cubic-bezier(0.74, 0.06, 0.4, 0.92) forwards;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-top: -40px;
+  -webkit-animation-delay: 1s;
+          animation-delay: 1s;
+}
+
+#chris-greening .box .subtitle p {
+  font-family: 'Georgia';
+  font-size: 32px;
+  -webkit-animation: fade-in 1s forwards;
+  animation: fade-in 1s forwards;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  opacity: 0;
+  z-index: -1;
+  font-weight: 400;
+  text-transform: uppercase;
+  letter-spacing: 5px;
+}
+
+@media (max-width: 720px) {
+  #chris-greening .box .subtitle p {
+    font-size: 20px;
   }
 }
 
@@ -877,8 +873,8 @@ section {
 
 #footer {
   background-color: transparent;
-  -webkit-animation: secFadeIn 1s forwards;
-          animation: secFadeIn 1s forwards;
+  -webkit-animation: fade-in 1s forwards;
+          animation: fade-in 1s forwards;
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;
@@ -897,8 +893,8 @@ section {
       -ms-flex-pack: center;
           justify-content: center;
   font-family: Georgia;
-  -webkit-animation: secFadeIn 1s forwards;
-          animation: secFadeIn 1s forwards;
+  -webkit-animation: fade-in 1s forwards;
+          animation: fade-in 1s forwards;
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;
@@ -917,8 +913,8 @@ section {
 }
 
 #canvas {
-  -webkit-animation: secFadeIn 1s forwards;
-          animation: secFadeIn 1s forwards;
+  -webkit-animation: fade-in 1s forwards;
+          animation: fade-in 1s forwards;
   -webkit-animation-delay: 1.6s;
           animation-delay: 1.6s;
   opacity: 0;

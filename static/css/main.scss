@@ -55,7 +55,7 @@ section {
 
 #footer {
   background-color: transparent;
-  animation: secFadeIn 1s forwards;
+  animation: fade-in 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
   // @extend .crt;
@@ -68,7 +68,7 @@ section {
   align-items: center;
   justify-content: center;
   font-family: Georgia;
-  animation: secFadeIn 1s forwards;
+  animation: fade-in 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
   @media (max-width: 720px) {
@@ -83,7 +83,7 @@ section {
 }
 
 #canvas {
-  animation: secFadeIn 1s forwards;
+  animation: fade-in 1s forwards;
   animation-delay: 1.6s;
   opacity: 0;
 }
