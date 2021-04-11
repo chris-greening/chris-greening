@@ -121,8 +121,6 @@ function getStartPosition() {
     }
 }
 
-project.currentStyle.strokeColor = 'white';
-
 var Game = {
     newRound: function () {
         Game.roundDelay = false;
@@ -393,6 +391,7 @@ var Rocks = new function () {
     ];
     for (var i = 0; i < 4; i++) {
         shapes[i].fillColor = "black";
+        shapes[i].strokeColor = "white";
         shapes[i].strokeWidth = 1.5;
     }
 
