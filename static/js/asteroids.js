@@ -528,35 +528,33 @@ var musicCredit = document.getElementById("music-credit")
 
 nightModeButton.onclick = nightModeToggle;
 
+function applyNightModeStyles(elements, removeClass, addClass, color) {
+    elements.body.classList.remove(removeClass);
+    elements.body.classList.add(addClass);
+    elements.h1.style.color = color;
+    elements.button.style.color = color;
+    Ship.item.strokeColor = color;
+    for (var i = 0; i < elements.p.length; i++) {
+        elements.p[i].style.color = color;
+    }
+}
+
 function nightModeToggle() {
     if (presets.crtEffect) {
         return;
     }
-    var body = document.getElementsByTagName("body")[0];
-    // var container = document.querySelector(".container .box .title h1");
-    var h1 = document.getElementsByTagName("h1")[0];
-    var p = document.getElementsByTagName("p");
-    var button = document.getElementsByTagName("i")[0];
-    // var span = document.getElementsByTagName("span")[0];
+    var nightModeElements = {
+        body: document.getElementsByTagName("body")[0],
+        h1: document.getElementsByTagName("h1")[0],
+        p: document.getElementsByTagName("p"),
+        button: document.getElementsByTagName("i")[0]
+    }
     if (presets.nightMode) {
-        body.classList.remove("darkmode");
-        body.classList.add("lightmode");
-        h1.style.color = "black";
-        button.style.color = "black";
-        for (var i=0; i < p.length; i++) {
-            p[i].style.color = "black";
-        }
-        Ship.item.strokeColor = "black";
+        // dark to light
+        applyNightModeStyles(nightModeElements, "darkmode", "lightmode", "black");
     } else {
-        body.classList.add("darkmode");
-        body.classList.remove("lightmode");
-        h1.classList.remove("lightmode");
-        h1.style.color = "white";
-        button.style.color = "white";
-        for (var i=0; i < p.length; i++) {
-            p[i].style.color = "white";
-        }
-        Ship.item.strokeColor = "white";
+        // light to dark
+        applyNightModeStyles(nightModeElements, "lightmode", "darkmode", "white");
     }
     presets.nightMode = !presets.nightMode
 }
