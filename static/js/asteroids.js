@@ -13,6 +13,33 @@ var presets = {
     crtEffect: false
 };
 
+var assets = {
+    soundEffects: {
+        'deathExplosion': new Audio("./static/js/explosion.mp3"),
+        'lazer': new Audio("./static/js/lazer.mp3"),
+    },
+    destroyedShip: new function () {
+        var group = new Group(
+            new Path([-10, -8], [10, 0]),
+            new Path([10, 0], [-10, 8])
+            // new Path([-8, 4], [-8, -4])
+        );
+        group.visible = false;
+        return group;
+    },
+    explosion: new function () {
+        var explosionPath = new Path.Circle(new Point(), 1);
+        if (presets.nightMode) {
+            explosionPathColor = "white";
+        } else {
+            explosionPathColor = "black";
+        }
+        explosionPath.fillColor = explosionPathColor;
+        explosionPath.strokeColor = null;
+        return new SymbolDefinition(explosionPath);
+    }
+};
+
 function checkGameStart() {
     if (!presets.gameStart) {
         presets.gameStart = true;
@@ -101,33 +128,6 @@ var Game = {
         Game.roundDelay = false;
         Rocks.add(presets.rockCount);
     },
-};
-
-var assets = {
-    soundEffects: {
-        'deathExplosion': new Audio("./static/js/explosion.mp3"),
-        'lazer': new Audio("./static/js/lazer.mp3"),
-    },
-    destroyedShip: new function () {
-        var group = new Group(
-            new Path([-10, -8], [10, 0]),
-            new Path([10, 0], [-10, 8])
-            // new Path([-8, 4], [-8, -4])
-        );
-        group.visible = false;
-        return group;
-    },
-    explosion: new function () {
-        var explosionPath = new Path.Circle(new Point(), 1);
-        if (presets.nightMode) {
-            explosionPathColor = "white";
-        } else {
-            explosionPathColor = "black";
-        }
-        explosionPath.fillColor = explosionPathColor;
-        explosionPath.strokeColor = null;
-        return new SymbolDefinition(explosionPath);
-    }
 };
 
 var Ship = new function () {
