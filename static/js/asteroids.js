@@ -561,18 +561,21 @@ function nightModeToggle() {
     presets.nightMode = !presets.nightMode
 }
 
+function toggleIcon(icon, removeClass, addClass) {
+    icon.classList.remove(removeClass);
+    icon.classList.add(addClass);
+}
+
 soundEffectsButton.onclick = function () {
     if (presets.soundEnabled) {
-        soundEffectsButton.classList.remove("fa-volume-up");
-        soundEffectsButton.classList.add("fa-volume-mute");
+        // Turn sound off 
+        toggleIcon(soundEffectsButton, "fa-volume-up", "fa-volume-mute");
         musicCredit.style.display = "none";
-        // backgroundMusic.muted = true;
         backgroundMusic.pause()
     } else {
-        soundEffectsButton.classList.remove("fa-volume-mute");
-        soundEffectsButton.classList.add("fa-volume-up");
+        // Turn sound on
+        toggleIcon(soundEffectsButton, "fa-volume-mute", "fa-volume-up");
         musicCredit.style.display = "inline";
-        // backgroundMusic.muted = false;
         backgroundMusic.play()
     }
     presets.soundEnabled = !presets.soundEnabled;
@@ -580,13 +583,11 @@ soundEffectsButton.onclick = function () {
 
 pauseButton.onclick = function () {
     if (presets.pause) {
-        pauseButton.classList.remove("fa-play");
-        pauseButton.classList.add("fa-pause");
-        // backgroundMusic.muted = true;
+        // Play
+        toggleIcon(pauseButton, "fa-play", "fa-pause");
     } else {
-        pauseButton.classList.remove("fa-pause");
-        pauseButton.classList.add("fa-play");
-        // backgroundMusic.muted = false;
+        // Pause
+        toggleIcon(pauseButton, "fa-pause", "fa-play");
     }
     presets.pause = !presets.pause;
 }
