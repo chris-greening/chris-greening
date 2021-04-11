@@ -7,6 +7,7 @@ var presets = {
     rockCount: Math.round((vw/200) + (vh/300)),
     starCount: Math.round((vw / 10) + (vh / 20)),
     gameStart: false,
+    integerOverflow: false,
     nightMode: true,
     soundEnabled: false,
     pause: false,
@@ -131,10 +132,9 @@ var Game = {
 var Ship = new function () {
     var ship = new Path([-7, -15], [0, 2], [7, -15]);
     ship.strokeWidth = 2.5;
-    ship.strokeColor = "white";
-    var integerOverflow = false;
     var thrust = new Path([-4, -9], [0, -18], [4, -9]);
     var group = new Group(ship, thrust);
+    group.strokeColor = "white";
     group.opacity = 0;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
@@ -490,7 +490,7 @@ var Score = new function () {
             if (type == Rocks.TYPE_SMALL) score += 2000;
             if (score >= 65535) {
                 score = 0;
-                Ship.integerOverflow = true;
+                presets.integerOverflow = true;
             }
             scoreDisplay.removeChildren();
 
@@ -517,10 +517,10 @@ var Score = new function () {
     };
 };
 
-var vector = new Point({
-    angle: 45,
-    length: 0
-});
+// var vector = new Point({
+//     angle: 45,
+//     length: 0
+// });
 
 var nightModeButton = document.getElementById('nightmode');
 var soundEffectsButton = document.getElementById('sound-effects');
