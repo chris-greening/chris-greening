@@ -4,8 +4,8 @@ var vh = Math.max(document.documentElement.clientHeight || 0, window.innerHeight
 var presets = {
     speed: 0.2,
     maxRockSpeed: 4.5,
-    // rockCount: Math.round((vw/200) + (vh/300)),
-    rockCount: 1,
+    rockCount: Math.round((vw/200) + (vh/300)),
+    starCount: 150,
     gameStart: false,
     nightMode: true,
     soundEnabled: false,
@@ -20,6 +20,8 @@ function checkGameStart() {
 }
 
 function initialize() {
+    console.log(Stars)
+    Stars.add(presets.starCount);
     Rocks.add(presets.rockCount);
     setTimeout(function () { Ship.make(); }, 1800);
     Score.update();
@@ -55,7 +57,6 @@ function onFrame() {
     }
 }
 
-
 project.currentStyle.strokeColor = 'white';
 
 var Game = {
@@ -66,7 +67,10 @@ var Game = {
 };
 
 var assets = {
-    soundEffects: [],
+    soundEffects: {
+        'deathExplosion': new Audio("./static/js/explosion.mp3"),
+        'lazer': new Audio("./static/js/lazer.mp3"),
+    },
     destroyedShip: new function () {
         var group = new Group(
             new Path([-10, -8], [10, 0]),
@@ -101,10 +105,6 @@ var Ship = new function () {
     group.opacity = 0;
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
-
-    assets.soundEffects['deathExplosion'] = new Audio("./static/js/explosion.mp3");
-    assets.soundEffects['deathExplosion'].load();
-
     return {
         item: group,
 
@@ -234,10 +234,7 @@ var Ship = new function () {
 var Bullets = new function () {
     var group = new Group();
     var children = group.children;
-    assets.soundEffects['lazer'] = new Audio("./static/js/lazer.mp3");
-    assets.soundEffects['lazer'].volume = 1;
-    assets.soundEffects['lazer'].load();
-
+    
     function checkHits(bullet) {
         for (var r = 0; r < Rocks.children.length; r++) {
             var rock = Rocks.children[r];
@@ -260,7 +257,6 @@ var Bullets = new function () {
             // We can only fire 5 bullets at a time:
             if (children.length == 5)
                 return;
-            // assets.soundEffects['lazer'].play();
             if (presets.soundEnabled) {
                 assets.soundEffects["lazer"].cloneNode().play();
             }
@@ -303,6 +299,44 @@ var Bullets = new function () {
         }
     };
 };
+
+// Create a symbol, which we will use to place instances of later:
+var Stars = new function () {
+    var group = new Group();
+    var shape = new Path.Circle({
+        center: new Point(0, 0),
+        radius: 3,
+        fillColor: 'white',
+        strokeColor: 'black'
+    });
+    var symbol = new SymbolDefinition(shape);
+    console.log("TEST");
+
+    return {
+        symbol: symbol,
+        add: function (amount) {
+            for (var i = 0; i < amount; i++) {
+                var star = this.make(i);
+                group.addChild(star);
+                // group.sendToBack();
+            }
+        },
+
+        make: function (i) {
+            // The center position is a random point in the view:
+            var center = Point.random() * view.size;
+            var star = symbol.place(center);
+            var scale = (i + 1) / presets.starCount;
+            star.scale(scale);
+            star.data.vector = new Point({
+                angle: Math.random() * 360,
+                length: scale * Math.random() / 5
+            });
+            return star;
+        },
+    };
+};
+
 
 var Rocks = new function () {
     var group = new Group();
@@ -493,31 +527,7 @@ function getStartPosition() {
     }
 }
 
-var count = 150;
-
-// Create a symbol, which we will use to place instances of later:
-var Star = new Path.Circle({
-    center: new Point(0, 0),
-    radius: 3,
-    fillColor: 'white',
-    strokeColor: 'black'
-});
-
-var symbol = new SymbolDefinition(Star);
-
 // Place the instances of the symbol:
-for (var i = 0; i < count; i++) {
-    // The center position is a random point in the view:
-    var center = Point.random() * view.size;
-    var placed = symbol.place(center);
-    var scale = (i + 1) / count;
-    placed.scale(scale);
-    placed.data.vector = new Point({
-        angle: Math.random() * 360,
-        length: scale * Math.random() / 5
-    });
-    placed.sendToBack();
-}
 
 var vector = new Point({
     angle: 45,
