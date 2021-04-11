@@ -131,13 +131,15 @@ var Game = {
 
 var Ship = new function () {
     var ship = new Path([-7, -15], [0, 2], [7, -15]);
-    ship.strokeWidth = 2.5;
-    var thrust = new Path([-4, -9], [0, -18], [4, -9]);
+    var thrust = new Path([-4, -9], [0, -18], [4, -9]);    
     var group = new Group(ship, thrust);
     group.strokeColor = "white";
     group.opacity = 0;
+    group.strokeWidth = 2.5;
+
     var v = getStartPosition();
     group.position = new Point(v.x, v.y);
+    
     return {
         item: group,
 
