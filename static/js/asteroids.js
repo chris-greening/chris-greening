@@ -56,6 +56,44 @@ function onFrame() {
     }
 }
 
+// Stop left and right keyboard events from propagating.
+function onKeyDown(event) {
+    if (event.key == 'left' || event.key == 'right') {
+        return false;
+    }
+}
+
+function keepInView(item) {
+    var position = item.position;
+    var itemBounds = item.bounds;
+    var bounds = view.bounds;
+
+    if (itemBounds.left > bounds.width) {
+        position.x = -item.bounds.width;
+    }
+
+    if (position.x < -itemBounds.width) {
+        position.x = bounds.width;
+    }
+
+    if (itemBounds.top > view.size.height) {
+        position.y = -itemBounds.height;
+    }
+
+    if (position.y < -itemBounds.height) {
+        position.y = bounds.height + itemBounds.height / 2;
+    }
+}
+
+function getStartPosition() {
+    var v = document.getElementById("ship-position")
+    var rect = v.getBoundingClientRect()
+    return {
+        x: (rect.right + rect.left) / 2 - 2,
+        y: (rect.top + rect.bottom) / 2
+    }
+}
+
 project.currentStyle.strokeColor = 'white';
 
 var Game = {
@@ -333,7 +371,6 @@ var Stars = new function () {
     };
 };
 
-
 var Rocks = new function () {
     var group = new Group();
     var shapes = [
@@ -485,43 +522,7 @@ var Score = new function () {
 
 initialize();
 
-// Stop left and right keyboard events from propagating.
-function onKeyDown(event) {
-    if (event.key == 'left' || event.key == 'right') {
-        return false;
-    }
-}
 
-function keepInView(item) {
-    var position = item.position;
-    var itemBounds = item.bounds;
-    var bounds = view.bounds;
-
-    if (itemBounds.left > bounds.width) {
-        position.x = -item.bounds.width;
-    }
-
-    if (position.x < -itemBounds.width) {
-        position.x = bounds.width;
-    }
-
-    if (itemBounds.top > view.size.height) {
-        position.y = -itemBounds.height;
-    }
-
-    if (position.y < -itemBounds.height) {
-        position.y = bounds.height + itemBounds.height / 2;
-    }
-}
-
-function getStartPosition() {
-    var v = document.getElementById("ship-position")
-    var rect = v.getBoundingClientRect()
-    return {
-        x: (rect.right + rect.left) / 2 - 2,
-        y: (rect.top + rect.bottom) / 2
-    }
-}
 
 // Place the instances of the symbol:
 
