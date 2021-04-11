@@ -764,7 +764,7 @@
   margin-top: 100px;
 }
 
-#chris-greening .box .title .block {
+#chris-greening .box .title .animation-block {
   width: 0%;
   height: inherit;
   background: #ffb510;
@@ -810,7 +810,7 @@
   margin-top: 10px;
 }
 
-#chris-greening .box .subtitle .block {
+#chris-greening .box .subtitle .animation-block {
   width: 0%;
   height: inherit;
   background: #e91e63;

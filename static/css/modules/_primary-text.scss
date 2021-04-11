@@ -75,7 +75,7 @@
         flex-direction: column;
         .title {
             @include header-positioning(64px, 100px);
-            .block {
+            .animation-block {
                 @include block-animation(#ffb510, -20px);
             }
             h1 {
@@ -84,7 +84,7 @@
         }
         .subtitle {
             @include header-positioning(30px, 10px);
-            .block {
+            .animation-block {
                 @include block-animation(#e91e63, -40px);
                 animation-delay: 1s;
             }
