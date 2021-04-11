@@ -520,11 +520,7 @@ var Score = new function () {
 };
 
 var nightModeButton = document.getElementById('nightmode');
-var soundEffectsButton = document.getElementById('sound-effects');
-var backgroundMusic = document.getElementById("background-song");
-var pauseButton = document.getElementById("pause-button");
-var crtEffectButton = document.getElementById("crt-effect");
-var musicCredit = document.getElementById("music-credit")
+
 
 nightModeButton.onclick = nightModeToggle;
 
@@ -540,9 +536,12 @@ function applyNightModeStyles(elements, removeClass, addClass, color) {
 }
 
 function nightModeToggle() {
+    // Prevent night mode from being toggled if in CRT mode
     if (presets.crtEffect) {
         return;
     }
+
+    // Elements affected by toggling night mode
     var nightModeElements = {
         body: document.getElementsByTagName("body")[0],
         h1: document.getElementsByTagName("h1")[0],
@@ -559,48 +558,8 @@ function nightModeToggle() {
     presets.nightMode = !presets.nightMode
 }
 
-function toggleIcon(icon, removeClass, addClass) {
-    icon.classList.remove(removeClass);
-    icon.classList.add(addClass);
-}
-
-soundEffectsButton.onclick = function () {
-    if (presets.soundEnabled) {
-        // Turn sound off 
-        toggleIcon(soundEffectsButton, "fa-volume-up", "fa-volume-mute");
-        musicCredit.style.display = "none";
-        backgroundMusic.pause()
-    } else {
-        // Turn sound on
-        toggleIcon(soundEffectsButton, "fa-volume-mute", "fa-volume-up");
-        musicCredit.style.display = "inline";
-        backgroundMusic.play()
-    }
-    presets.soundEnabled = !presets.soundEnabled;
-}
-
-pauseButton.onclick = function () {
-    if (presets.pause) {
-        // Play
-        toggleIcon(pauseButton, "fa-play", "fa-pause");
-    } else {
-        // Pause
-        toggleIcon(pauseButton, "fa-pause", "fa-play");
-    }
-    presets.pause = !presets.pause;
-}
-
-crtEffectButton.onclick = function () {
-    var body = document.getElementsByTagName("body")[0];
-    if (!presets.nightMode) {
-        nightModeToggle();
-    }
-    if (presets.crtEffect) {
-        body.classList.remove("crt");
-    } else {
-        body.classList.add("crt");
-    }
-    presets.crtEffect = !presets.crtEffect;
-}
 
 initialize();
+
+window.asteroids = {};
+window.asteroids.presets = presets;
