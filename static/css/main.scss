@@ -24,6 +24,15 @@ body {
   background-color: black;
 }
 
+section {
+  width: 100%;
+}
+
+.masthead {
+  // background-color: transparent;
+  display: none;
+}
+
 #stats {
   position: absolute;
   left: auto !important;
@@ -36,15 +45,6 @@ body {
   @media (min-width: 80em) {
     max-width: 100%;
   }
-}
-
-.masthead {
-  // background-color: transparent;
-  display: none;
-}
-
-section {
-  width: 100%;
 }
 
 #footer {
