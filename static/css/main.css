@@ -971,15 +971,15 @@ body {
   right: 0px;
 }
 
+#main {
+  margin: 0px;
+  padding: 0px;
+}
+
 @media (min-width: 80em) {
   #main {
     max-width: 100%;
   }
-}
-
-#main {
-  margin: 0px;
-  padding: 0px;
 }
 
 .masthead {
