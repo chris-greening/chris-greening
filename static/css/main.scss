@@ -102,3 +102,39 @@ a {
   animation-delay: 1.6s;
   opacity: 0;
 }
+
+.page__footer-follow {
+  a {
+      position: relative;
+      animation: fade-in 1s forwards;
+      animation-delay: 1.6s;
+      opacity: 0;
+      text-decoration: none;
+    }
+
+    a:visited {
+      color: white;
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: none!important;
+    }
+
+    a:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: red;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    a:hover:after {
+      width: 100%;
+      left: 0;
+    }
+}

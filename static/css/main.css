@@ -1058,4 +1058,42 @@ a {
           animation-delay: 1.6s;
   opacity: 0;
 }
+
+.page__footer-follow a {
+  position: relative;
+  -webkit-animation: fade-in 1s forwards;
+          animation: fade-in 1s forwards;
+  -webkit-animation-delay: 1.6s;
+          animation-delay: 1.6s;
+  opacity: 0;
+  text-decoration: none;
+}
+
+.page__footer-follow a:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.page__footer-follow a:hover {
+  text-decoration: none !important;
+}
+
+.page__footer-follow a:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: red;
+  -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+.page__footer-follow a:hover:after {
+  width: 100%;
+  left: 0;
+}
 /*# sourceMappingURL=main.css.map */
