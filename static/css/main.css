@@ -966,8 +966,15 @@ section {
   display: none;
 }
 
-.nav-link {
-  margin-bottom: 66px;
+a:hover {
+  text-decoration: none;
+}
+
+a {
+  text-decoration: none;
+}
+
+#navbar {
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -977,6 +984,15 @@ section {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  margin-bottom: 74px;
+}
+
+#navbar li {
+  width: 100px;
+  list-style: none;
+}
+
+#navbar li .nav-link {
   font-family: "Georgia";
   color: white;
   position: relative;
@@ -989,13 +1005,32 @@ section {
   text-decoration: none;
 }
 
-.nav-link:visited {
+#navbar li .nav-link:visited {
   color: white;
   text-decoration: none;
 }
 
-.nav-link:hover {
-  text-decoration: none;
+#navbar li .nav-link:hover {
+  text-decoration: none !important;
+}
+
+#navbar li .nav-link:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: red;
+  -webkit-transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+
+#navbar li .nav-link:hover:after {
+  width: 100%;
+  left: 0;
 }
 
 #stats {

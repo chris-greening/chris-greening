@@ -26,28 +26,60 @@ section {
   display: none;
 }
 
-.nav-link {
-  margin-bottom: 66px;
+a:hover {
+  text-decoration: none;
+}
+a {
+  text-decoration: none;
+}
+
+
+#navbar {
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: "Georgia";
-  color: white;
-  position: relative;
-  animation: fade-in 1s forwards;
-  animation-delay: 1.6s;
-  opacity: 0;
-  font-size: 16px;
-  text-decoration: none;
-}
+  margin-bottom: 74px;
+  li {
+    width: 100px;
+    list-style: none;
+    .nav-link {
 
-.nav-link:visited {
-  color: white;
-  text-decoration: none;
-}
+      font-family: "Georgia";
+      color: white;
+      position: relative;
+      animation: fade-in 1s forwards;
+      animation-delay: 1.6s;
+      opacity: 0;
+      font-size: 16px;
+      text-decoration: none;
+    }
 
-.nav-link:hover {
-  text-decoration: none;
+    .nav-link:visited {
+      color: white;
+      text-decoration: none;
+    }
+
+    .nav-link:hover {
+      text-decoration: none!important;
+    }
+
+    .nav-link:after {
+      background: none repeat scroll 0 0 transparent;
+      bottom: 0;
+      content: "";
+      display: block;
+      height: 2px;
+      left: 50%;
+      position: absolute;
+      background: red;
+      transition: width 0.3s ease 0s, left 0.3s ease 0s;
+      width: 0;
+    }
+    .nav-link:hover:after {
+      width: 100%;
+      left: 0;
+    }
+  }
 }
 
 #stats {
