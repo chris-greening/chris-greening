@@ -13,7 +13,7 @@ I have been developing software professionally for 3+ years and have a wide rang
 
 Ever since I was a kid, I have been incredibly passionate about science and technology. With a BSc in Physics from Stony Brook University, I have a strong analytical and engineering background and am constantly expanding my technical expertise.
 
-I am always open to new opportunities (both local and remote), let's get in touch!
+I am always open to new opportunities (both local and remote), let's get in touch! Feel free to email me (chris@christophergreening.com) or contact me on one of listed social media platforms.
 
 <div id="wrapper-9cd199b9cc5410cd3b1ad21cab2e54d3">
 		<div id="map-9cd199b9cc5410cd3b1ad21cab2e54d3"></div><script>(function () {
