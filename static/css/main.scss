@@ -26,6 +26,30 @@ section {
   display: none;
 }
 
+.nav-link {
+  margin-bottom: 66px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: "Georgia";
+  color: white;
+  position: relative;
+  animation: fade-in 1s forwards;
+  animation-delay: 1.6s;
+  opacity: 0;
+  font-size: 16px;
+  text-decoration: none;
+}
+
+.nav-link:visited {
+  color: white;
+  text-decoration: none;
+}
+
+.nav-link:hover {
+  text-decoration: none;
+}
+
 #stats {
   position: absolute;
   left: auto !important;
