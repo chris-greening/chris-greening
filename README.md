@@ -24,4 +24,4 @@ Hello! My name is Chris Greening and I am a software engineer based out of the N
 [![DEV](https://img.shields.io/badge/-DEV-black?&style=flat-square&logo=dev.to&logoColor=white)](https://dev.to/chrisgreening)
 
 <!-- <img align="left" src="https://github-readme-stats.vercel.app/api/top-langs/?username=chris-greening&theme=dracula" /> -->
-<img align="right" src="https://github-readme-stats.vercel.app/api?username=chris-greening&theme=dracula">
+<!-- <img align="right" src="https://github-readme-stats.vercel.app/api?username=chris-greening&theme=dracula"> -->
